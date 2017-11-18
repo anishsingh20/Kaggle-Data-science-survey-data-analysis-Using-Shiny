@@ -36,6 +36,8 @@ SurveyDf<-fread("../Datasets/kagglesurvey2017/multipleChoiceResponses.csv") #for
 
 Checking the distribution of each variable-
 ```{r,message=FALSE,warning=FALSE}
+attach(SurveyDf)
+
 
 table(SurveyDf$GenderSelect)
 
@@ -52,10 +54,46 @@ table(SurveyDf$EmploymentStatus)
 Let's visualize the above varibles to understand the distribution better
 I will use the _plotly_ package.
 
-```{r}
+```{r,fig.height=6,fig.width=12}
 
-plot_ly(type="bar",x=SurveyDf$GenderSelect)
+p1<-ggplot(aes(x=GenderSelect),data=SurveyDf) +
+  geom_bar() +
+  ggtitle("Barplot of Gender of the participants") +
+  coord_flip()
+
+p2<-ggplot(aes(x=EmploymentStatus ),data=SurveyDf) +
+  geom_bar() +
+  ggtitle("Barplot of Employment Status of survey participants") +
+  coord_flip()
+
+
+
+p1
+p2
 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
