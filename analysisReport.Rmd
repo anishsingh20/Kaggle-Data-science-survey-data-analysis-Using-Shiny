@@ -58,20 +58,20 @@ I will use the _highcharter_ and __ggplot2__ packages.
 
 ```{r,fig.height=4,fig.width=10,warning=FALSE,message=FALSE}
 #barplot of Gender
-hchart(SurveyDf$GenderSelect,type="bar",name="Gender",color="green") %>%
+hchart(SurveyDf$GenderSelect,type="bar",name="count",color="green") %>%
   hc_exporting(enabled = TRUE) %>%
   hc_title(text="Barplot of gender",align="center") %>%
   hc_add_theme(hc_theme_elementary()) 
 
 #barplot of Emp_status
-hchart(SurveyDf$EmploymentStatus,type="bar",name="Employment Status",color="red") %>% 
+hchart(SurveyDf$EmploymentStatus,type="bar",name="count",color="red") %>% 
   hc_exporting(enabled = TRUE) %>%
   hc_title(text="Barplot of Employment Status",align="center") %>%
   hc_add_theme(hc_theme_elementary()) 
 
 
 #barplot of country
-hchart(SurveyDf$Country,type="bar",name="Country",color="blue") %>% 
+hchart(SurveyDf$Country,type="bar",name="Count",color="blue") %>% 
   hc_exporting(enabled = TRUE) %>%
   hc_title(text="Barplot of Country or participants",align="center") %>%
   hc_add_theme(hc_theme_elementary()) 
@@ -103,7 +103,7 @@ Let's check the distribution of the ages of participants--
 
 #histogram of age of participants
 
-hchart(na.omit(SurveyDf$Age),name="Age",color="orange") %>%
+hchart(na.omit(SurveyDf$Age),name="count",color="orange") %>%
   hc_title(text="Histogram of Ages of the participants",align="center") %>%
   hc_exporting(enabled=TRUE) %>%
   hc_add_theme(hc_theme_elementary())
