@@ -17,7 +17,7 @@ This is a data analytics project for mining analyzing, visualizing the data coll
 ```{r,message=FALSE,warning=FALSE}
 
 require(data.table)
-require(highcharter)
+require(plotly)
 require(ggplot2)
 require(tidyverse)
 
@@ -25,14 +25,37 @@ SurveyDf<-fread("../Datasets/kagglesurvey2017/multipleChoiceResponses.csv") #for
 
 ```
 
-Let's check the structure of the datset--
 
+-------------------
+
+
+### Exploratory data analysis
+
+
+##### 1) Part 1- Analyzing country,ethnicity, gender,age,employment status, learning datascience and other related basic features of the survey participants.
+
+Checking the distribution of each variable-
 ```{r,message=FALSE,warning=FALSE}
 
-glimpse(SurveyDf)
-#the dataset has a total of 16,716 rows and 228 columns
+table(SurveyDf$GenderSelect)
 
+table(SurveyDf$Country)
+
+summary(na.omit(SurveyDf$Age))
+
+table(SurveyDf$EmploymentStatus)
 
 
 ```
+
+
+Let's visualize the above varibles to understand the distribution better
+I will use the _plotly_ package.
+
+```{r}
+
+plot_ly(type="bar",x=SurveyDf$GenderSelect)
+
+```
+
 
