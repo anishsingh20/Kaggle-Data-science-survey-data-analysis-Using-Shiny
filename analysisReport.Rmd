@@ -52,26 +52,71 @@ table(SurveyDf$EmploymentStatus)
 
 
 Let's visualize the above varibles to understand the distribution better
-I will use the _plotly_ package.
+I will use the _plotly_ and __ggplot2__ packages.
 
-```{r,fig.height=6,fig.width=12}
+```{r,fig.height=4,fig.width=10}
 
 p1<-ggplot(aes(x=GenderSelect),data=SurveyDf) +
-  geom_bar() +
+  geom_bar(fill="red",alpha=0.6) +
   ggtitle("Barplot of Gender of the participants") +
   coord_flip()
 
+hchart(GenderSelect$SurveyDf,type="column")
+
+p1
+
 p2<-ggplot(aes(x=EmploymentStatus ),data=SurveyDf) +
-  geom_bar() +
+  geom_bar(fill="blue",alpha=0.6) +
   ggtitle("Barplot of Employment Status of survey participants") +
   coord_flip()
 
-
-
-p1
 p2
 
 ```
+
+
+__So most of the participants were male and were full time employed.__
+
+
+Let's check the distribution of the ages of participants--
+
+
+
+
+```{r,message=FALSE,warning=FALSE}
+#histogram of age of participants
+
+hchart(na.omit(SurveyDf$Age),color="orange") %>%
+  hc_title("Histogram of Ages of the participants") %>%
+  hc_exporting(TRUE)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
