@@ -83,6 +83,7 @@ hchart(countryCount,hcaes(Var1,value=Freq,color=Freq),type="treemap")
 
 
 So most of the participants were __Male__ and were __full time employed__. Secondly most of the participants are form __USA__ followed by __India__ in the second place.
+This shows that people from these countries are very much interested in Data science and its related subfields, also shows large number of people in the field of Datascience.
 
 
 Let's check the distribution of the ages of participants--
