@@ -1,5 +1,5 @@
 ---
-title: "Analyzing Kaggle survey Data"
+title: "Analyzing Kaggle Data Science Survey Data-2017"
 author: "Anish Singh Walia"
 output:
   html_document:
@@ -111,7 +111,7 @@ hchart(na.omit(SurveyDf$Age),color="orange") %>%
 
 From the above histogram the highest count is of participants form __age 20 to 25__. This indicates that most of the students, young job seekers, freshers etc have taken this survey and are interested in Data Science and its related domains.
 
-We can also check this relationship between Age and employment status of the participants using a Boxplt.
+We can also check this relationship between Age and employment status of the participants using a __Boxplot__.
 
 
 ---------------------------
@@ -123,7 +123,7 @@ We can also check this relationship between Age and employment status of the par
 ```{r}
 by(Age,EmploymentStatus,summary)
 
-hcboxplot(x= Age , var = EmploymentStatus,color="purple",outliers = FALSE) %>%
+hcboxplot(x= Age , name="Age of participants", var = EmploymentStatus,color="purple",outliers = FALSE) %>%
   hc_title(text="Boxplot of Ages of the participants and their Employment Status",align="center") %>%
   hc_exporting(enabled=TRUE) %>%
   hc_add_theme(hc_theme_elementary()) %>% 
