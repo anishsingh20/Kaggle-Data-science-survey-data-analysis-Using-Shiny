@@ -1,7 +1,9 @@
 ---
 title: "Analyzing Kaggle survey Data"
-output: html_notebook
 author: "Anish Singh Walia"
+output:
+  html_document:
+    df_print: paged
 ---
 
 ## AIM 
@@ -76,7 +78,11 @@ hchart(SurveyDf$Country,type="bar",color="blue") %>%
 
 #treemap of top 10  countries  of participant
 countryCount<-as.data.frame(table(SurveyDf$Country)) %>%  top_n(10) 
-hchart(countryCount,hcaes(Var1,value=Freq,color=Freq),type="treemap")
+hchart(countryCount,hcaes(Var1,value=Freq,color=Freq),type="treemap") %>%
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Tree map of top 10 countries of participants",align="center") %>%
+  hc_add_theme(hc_theme_elementary()) 
+
 
 
 ```
@@ -92,11 +98,13 @@ Let's check the distribution of the ages of participants--
 
 
 ```{r,message=FALSE,warning=FALSE}
+
 #histogram of age of participants
 
 hchart(na.omit(SurveyDf$Age),color="orange") %>%
-  hc_title("Histogram of Ages of the participants") %>%
-  hc_exporting(TRUE)
+  hc_title(text="Histogram of Ages of the participants",align="center") %>%
+  hc_exporting(enabled=TRUE) %>%
+  hc_add_theme(hc_theme_elementary())
 
 ```
 
