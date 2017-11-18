@@ -4,3 +4,8 @@ output: html_notebook
 author: "Anish Singh Walia"
 ---
 
+## AIM 
+
+This is a data analytics project for mining analyzing, visualizing the data collected by the Kaggle Data science survey conducted in 2017.
+
+
