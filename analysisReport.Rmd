@@ -17,7 +17,7 @@ This is a data analytics project for mining analyzing, visualizing the data coll
 ```{r,message=FALSE,warning=FALSE}
 
 require(data.table)
-require(plotly)
+require(highcharter)
 require(ggplot2)
 require(tidyverse)
 
@@ -52,25 +52,32 @@ table(SurveyDf$EmploymentStatus)
 
 
 Let's visualize the above varibles to understand the distribution better
-I will use the _plotly_ and __ggplot2__ packages.
+I will use the _highcharter_ and __ggplot2__ packages.
 
 ```{r,fig.height=4,fig.width=10}
+#barplot of Gender
+hchart(SurveyDf$GenderSelect,type="bar",color="green") %>%
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of gender",align="center") %>%
+  hc_add_theme(hc_theme_elementary()) 
 
-p1<-ggplot(aes(x=GenderSelect),data=SurveyDf) +
-  geom_bar(fill="red",alpha=0.6) +
-  ggtitle("Barplot of Gender of the participants") +
-  coord_flip()
+#barplot of Emp_status
+hchart(SurveyDf$EmploymentStatus,type="bar",color="red") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of Employment Status",align="center") %>%
+  hc_add_theme(hc_theme_elementary()) 
 
-hchart(GenderSelect$SurveyDf,type="column")
 
-p1
+#barplot of country
+hchart(SurveyDf$Country,type="bar",color="blue") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of Country or participants",align="center") %>%
+  hc_add_theme(hc_theme_elementary()) 
 
-p2<-ggplot(aes(x=EmploymentStatus ),data=SurveyDf) +
-  geom_bar(fill="blue",alpha=0.6) +
-  ggtitle("Barplot of Employment Status of survey participants") +
-  coord_flip()
+#treemap of top 10  countries  of participant
+countryCount<-as.data.frame(table(SurveyDf$Country)) %>%  top_n(10) 
+hchart(countryCount,hcaes(Var1,value=Freq,color=Freq),type="treemap")
 
-p2
 
 ```
 
