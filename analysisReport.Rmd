@@ -109,7 +109,9 @@ hchart(na.omit(SurveyDf$Age),color="orange") %>%
 ```
 
 
-From the above histogram the highest count is of participants form __age 20 to 25__. This indicated that most of the freshers in the job industry,students have taken this survey and are interested in Data Science and its related domains.
+From the above histogram the highest count is of participants form __age 20 to 25__. This indicates that most of the students, young job seekers, freshers etc have taken this survey and are interested in Data Science and its related domains.
+
+We can also check this relationship between Age and employment status of the participants using a Boxplt.
 
 
 ---------------------------
