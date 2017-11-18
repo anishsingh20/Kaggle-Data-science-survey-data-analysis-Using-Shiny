@@ -56,29 +56,31 @@ table(SurveyDf$EmploymentStatus)
 Let's visualize the above varibles to understand the distribution better
 I will use the _highcharter_ and __ggplot2__ packages.
 
-```{r,fig.height=4,fig.width=10}
+```{r,fig.height=4,fig.width=10,warning=FALSE,message=FALSE}
 #barplot of Gender
-hchart(SurveyDf$GenderSelect,type="bar",color="green") %>%
+hchart(SurveyDf$GenderSelect,type="bar",name="Gender",color="green") %>%
   hc_exporting(enabled = TRUE) %>%
   hc_title(text="Barplot of gender",align="center") %>%
   hc_add_theme(hc_theme_elementary()) 
 
 #barplot of Emp_status
-hchart(SurveyDf$EmploymentStatus,type="bar",color="red") %>% 
+hchart(SurveyDf$EmploymentStatus,type="bar",name="Employment Status",color="red") %>% 
   hc_exporting(enabled = TRUE) %>%
   hc_title(text="Barplot of Employment Status",align="center") %>%
   hc_add_theme(hc_theme_elementary()) 
 
 
 #barplot of country
-hchart(SurveyDf$Country,type="bar",color="blue") %>% 
+hchart(SurveyDf$Country,type="bar",name="Country",color="blue") %>% 
   hc_exporting(enabled = TRUE) %>%
   hc_title(text="Barplot of Country or participants",align="center") %>%
   hc_add_theme(hc_theme_elementary()) 
 
+
+
 #treemap of top 10  countries  of participant
 countryCount<-as.data.frame(table(SurveyDf$Country)) %>%  top_n(10) 
-hchart(countryCount,hcaes(Var1,value=Freq,color=Freq),type="treemap") %>%
+hchart(countryCount,hcaes(Var1,value=Freq,color=Freq),name="Count of participants",type="treemap") %>%
   hc_exporting(enabled = TRUE) %>%
   hc_title(text="Tree map of top 10 countries of participants",align="center") %>%
   hc_add_theme(hc_theme_elementary()) 
@@ -101,7 +103,7 @@ Let's check the distribution of the ages of participants--
 
 #histogram of age of participants
 
-hchart(na.omit(SurveyDf$Age),color="orange") %>%
+hchart(na.omit(SurveyDf$Age),name="Age",color="orange") %>%
   hc_title(text="Histogram of Ages of the participants",align="center") %>%
   hc_exporting(enabled=TRUE) %>%
   hc_add_theme(hc_theme_elementary())
