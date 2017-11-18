@@ -9,3 +9,16 @@ author: "Anish Singh Walia"
 This is a data analytics project for mining analyzing, visualizing the data collected by the Kaggle Data science survey conducted in 2017.
 
 
+### let's get started
+
+#### Importing the dataset in R
+
+
+```{r,message=FALSE,warning=FALSE}
+
+require(data.table)
+
+SurveyDf<-fread("../Datasets/kagglesurvey2017/multipleChoiceResponses.csv") #for faster data reading
+
+```
+
