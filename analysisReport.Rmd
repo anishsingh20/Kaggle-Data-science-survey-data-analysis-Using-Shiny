@@ -102,6 +102,8 @@ Let's check the distribution of the ages of participants--
 ```{r,message=FALSE,warning=FALSE}
 
 #histogram of age of participants
+summary(na.omit(SurveyDf$Age))
+
 
 hchart(na.omit(SurveyDf$Age),name="count",color="orange") %>%
   hc_title(text="Histogram of Ages of the participants",align="center") %>%
@@ -110,7 +112,7 @@ hchart(na.omit(SurveyDf$Age),name="count",color="orange") %>%
 
 ```
 
-
+The distribution is somewhat __positively skewed__ as we can notice the slight long tailed histogram which indicates that the *mean(age) > median(age)* values.
 From the above histogram the highest count is of participants form __age 20 to 25__. This indicates that most of the students, young job seekers, freshers etc have taken this survey and are interested in Data Science and its related domains.
 
 We can also check this relationship between Age and employment status of the participants using a __Boxplot__.
@@ -140,7 +142,7 @@ hcboxplot(x= Age , name="Age of participants", var = EmploymentStatus,color="pur
 
 
 ```
-Hence the above __Boxplot__ can actually tell us about the bi-variate relation and the statistical distribution between Ages and the Employment status of the survey participants.
+Hence the above __Boxplot__ can actually tell us about the bi-variate relation and the statistical distribution between Ages and the Employment status of the survey participants. We can notice that the young participants between age of 20-25 are mostly Unemployed, of looking for job opportunities.
 
 
 
