@@ -112,7 +112,7 @@ hchart(na.omit(SurveyDf$Age),name="count",color="orange") %>%
 
 ```
 
-The distribution is somewhat __positively skewed__ as we can notice the slight long tailed histogram which indicates that the *mean(age) > median(age)* values.
+The distribution is somewhat __positively skewed__ as we can notice the slight long tailed histogram which indicates that the *mean(age) > median(age) > mode(age) * values.
 From the above histogram the highest count is of participants form __age 20 to 25__. This indicates that most of the students, young job seekers, freshers etc have taken this survey and are interested in Data Science and its related domains.
 
 We can also check this relationship between Age and employment status of the participants using a __Boxplot__.
