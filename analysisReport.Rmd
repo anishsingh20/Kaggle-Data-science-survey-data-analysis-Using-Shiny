@@ -140,7 +140,7 @@ hcboxplot(x= Age , name="Age of participants", var = EmploymentStatus,color="pur
 
 
 ```
-
+Hence the above __Boxplot__ can actually tell us about the bi-variate relation and the statistical distribution between Ages and the Employment status of the survey participants.
 
 
 
