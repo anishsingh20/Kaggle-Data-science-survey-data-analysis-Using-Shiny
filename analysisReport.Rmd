@@ -103,6 +103,7 @@ Let's check the distribution of the ages of participants--
 
 #histogram of age of participants
 summary(na.omit(SurveyDf$Age))
+#mean > median - positively skewed
 
 
 hchart(na.omit(SurveyDf$Age),name="count",color="orange") %>%
