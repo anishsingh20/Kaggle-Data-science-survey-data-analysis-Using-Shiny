@@ -171,6 +171,25 @@ hchart(LearningDataScience,name="count",type="column",color="#99FF33") %>%
 Hence we can notice that both these variables were not answered by more than 90% of the participants. So there is less scope of interpretting something from these.
 
 
+------------------------
+
+
+### Let's see how many are Coders
+
+```{r message=FALSE, warning=FALSE}
+table(CodeWriter)
+#so Most of them have entered Yes
+
+hchart(CodeWriter,type="column",name="Count",color="#9645FF") %>%
+  hc_title(text="Barplot of Number of Coders",align="center") %>%
+  hc_exporting(enabled=TRUE) %>%
+  hc_add_theme(hc_theme_elementary())
+
+
+#let's now check who all were 
+
+```
+
 
 
 
