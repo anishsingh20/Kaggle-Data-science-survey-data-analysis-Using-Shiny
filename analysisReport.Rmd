@@ -186,7 +186,22 @@ hchart(CodeWriter,type="column",name="Count",color="#9645FF") %>%
   hc_add_theme(hc_theme_elementary())
 
 
-#let's now check who all were 
+#let's now check which country has most coders
+
+#Making a new dataframe grouped by country and Code wirter variables and summarized by the count of each
+codeCountry<-SurveyDf %>% group_by(CodeWriter,Country) %>% 
+  select(CodeWriter,Country) %>%
+  filter(CodeWriter %in% c("Yes","No")) %>%
+  summarize(total=n())
+  
+#getting top 10 countries and their total coders and non coders
+TopCoders<-codeCountry %>% top_n(10) %>% arrange(desc(total))
+
+hchart(TopCoders,type="column",name=c("Do not write code","Code Writers"),hcaes(x=Country,y=total,group=CodeWriter),color=c("black","#FF4040") ) %>%
+  hc_title(text="Barplot of Countries grouped by Coder Writers",align="center") %>%
+  hc_exporting(enabled=TRUE) %>%
+  hc_add_theme(hc_theme_elementary())
+
 
 ```
 
