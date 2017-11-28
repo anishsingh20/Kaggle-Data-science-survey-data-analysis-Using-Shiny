@@ -205,6 +205,16 @@ hchart(TopCoders,type="column",name=c("Do not write code","Code Writers"),hcaes(
 
 ```
 
+---------------
+
+### Who all have switched their Carriers
+
+
+```{r message=FALSE, warning=FALSE}
+
+table(CareerSwitcher  )
+
+```
 
 
 
