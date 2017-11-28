@@ -25,6 +25,7 @@ require(tidyverse)
 
 SurveyDf<-fread("../Datasets/kagglesurvey2017/multipleChoiceResponses.csv") #for faster data reading
 
+attach(SurveyDf)
 ```
 
 
@@ -154,18 +155,20 @@ Hence the above __Boxplot__ can actually tell us about the bi-variate relation a
 
 ### Let's see how many are students ?
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 table(SurveyDf$StudentStatus)#most didn't fill this field
 
-hchart(SurveyDf$StudentStatus,type="column") #around > 15000 participants didn't fill this field
-
-
-table(SurveyDf$LearningDataScience)
+#let's check if participants are learning DS or not
+table(SurveyDf$LearningDataScience) #most of them didn't answered this too
+hchart(LearningDataScience,name="count",type="column",color="#99FF33") %>%
+  hc_title(text="Barplot of Learning Data science field",align="center") %>%
+  hc_exporting(enabled=TRUE) %>%
+  hc_add_theme(hc_theme_elementary())
 
 
 ```
 
-
+Hence we can notice that both these variables were not answered by more than 90% of the participants. So there is less scope of interpretting something from these.
 
 
 
