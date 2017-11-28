@@ -221,9 +221,28 @@ jobdf<-as.data.frame(table(CurrentJobTitleSelect))
 jobdf[1,1]<-"Not answered"
 jobdf<-na.omit(jobdf)
 
+jobdf %>% arrange(desc(Freq)) %>%   hchart(hcaes(x=CurrentJobTitleSelect,y=Freq),name="Count",color="#751A75",type="column") %>%
+  hc_title(text="Barplot of Current Job titles of the participants",align="center") %>%
+  hc_exporting(enabled=TRUE) %>%
+  hc_add_theme(hc_theme_elementary())
 
 
+#let's see the trends countrywise
 
+countryJobs<-SurveyDf %>% group_by(Country,CurrentJobTitleSelect) %>%
+        filter(Country %in% countryCount$Var1) %>%
+        select(Country,CurrentJobTitleSelect) %>%
+        summarize(total=n()) %>%
+        arrange(desc(total))
+
+countryJobs[1:2,]<-NA
+countryJobs<-na.omit(countryJobs)
+
+
+hchart(countryJobs,type="column",hcaes(x=Country,y=total,group=CurrentJobTitleSelect)) %>%
+  hc_title(text="Barplot of Countries grouped by Coder Writers",align="center") %>%
+  hc_exporting(enabled=TRUE) %>%
+  hc_add_theme(hc_theme_elementary())
 
 
 
