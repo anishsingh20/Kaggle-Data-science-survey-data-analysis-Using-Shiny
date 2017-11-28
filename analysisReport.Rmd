@@ -238,9 +238,13 @@ countryJobs<-SurveyDf %>% group_by(Country,CurrentJobTitleSelect) %>%
 countryJobs[1:2,]<-NA
 countryJobs<-na.omit(countryJobs)
 
+#making separate countries for comparative plots of Jobs of that country's participants.
+USIndJobs<-countryJobs %>% filter(Country %in% c("United States","India"))
+colors <- c("#d35400", "#2980b9", "#2ecc71", "#f1c40f", "#2c3e50", "#7f8c8d","#000004", "#3B0F70", "#8C2981", "#DE4968", "#FE9F6D", "#FCFDBF","#ffb3b3","#66ff33","#00b3b3","#4d4dff")
 
-hchart(countryJobs,type="column",hcaes(x=Country,y=total,group=CurrentJobTitleSelect)) %>%
-  hc_title(text="Barplot of Countries grouped by Coder Writers",align="center") %>%
+
+hchart(USIndJobs,type="column",hcaes(Country, y=total,group=CurrentJobTitleSelect),color=colors) %>%
+  hc_title(text="Barplot of Jobs of Country's participants",align="center") %>%
   hc_exporting(enabled=TRUE) %>%
   hc_add_theme(hc_theme_elementary())
 
@@ -251,7 +255,11 @@ hchart(countryJobs,type="column",hcaes(x=Country,y=total,group=CurrentJobTitleSe
 
 ```
 
+The above plot shows the comparative current job titles of survey participants form India and USA. 
 
+1)From India Most of the participants were __*Software developers followed by Data scientists*__.
+
+2)From USA most of the participants were *__Data scientists followed by software developers__*.
 
 
 
