@@ -239,8 +239,12 @@ countryJobs[1:2,]<-NA
 countryJobs<-na.omit(countryJobs)
 
 #making separate countries for comparative plots of Jobs of that country's participants.
+
+#Colors vectors for plotting
 USIndJobs<-countryJobs %>% filter(Country %in% c("United States","India"))
 colors <- c("#d35400", "#2980b9", "#2ecc71", "#f1c40f", "#2c3e50", "#7f8c8d","#000004", "#3B0F70", "#8C2981", "#DE4968", "#FE9F6D", "#FCFDBF","#ffb3b3","#66ff33","#00b3b3","#4d4dff")
+
+colors2<-c("#d35400", "#2980b9", "#2ecc71", "#f1c40f", "#2c3e50", "#7f8c8d","#000004", "#3B0F70", "#8C2981", "#DE4968", "#FE9F6D", "#FCFDBF","#ffb3b3","#66ff33","#00b3b3","#4d4dff","7D8A16")
 
 
 hchart(USIndJobs,type="column",hcaes(Country, y=total,group=CurrentJobTitleSelect),color=colors) %>%
@@ -250,7 +254,18 @@ hchart(USIndJobs,type="column",hcaes(Country, y=total,group=CurrentJobTitleSelec
 
 
 
+#USA INDIA and RUSSIA-Top 3 countries with maximum response 
 
+JobsMajorCountry<-countryJobs %>% filter(Country %in% c("United States","India","Russia"))
+
+JobsMajorCountry[13,2]<-NA
+
+
+
+hchart(na.omit(JobsMajorCountry),type="column",hcaes(Country, y=total,group=CurrentJobTitleSelect),color=colors) %>%
+  hc_title(text="Barplot of Jobs of Country's participants",align="center") %>%
+  hc_exporting(enabled=TRUE) %>%
+  hc_add_theme(hc_theme_elementary())
 
 
 ```
