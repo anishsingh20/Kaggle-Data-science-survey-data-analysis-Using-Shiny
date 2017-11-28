@@ -149,6 +149,21 @@ Hence the above __Boxplot__ can actually tell us about the bi-variate relation a
 
 
 
+---------------------------------
+
+
+### Let's see how many are students ?
+
+```{r}
+table(SurveyDf$StudentStatus)#most didn't fill this field
+
+hchart(SurveyDf$StudentStatus,type="column") #around > 15000 participants didn't fill this field
+
+
+table(SurveyDf$LearningDataScience)
+
+
+```
 
 
 
