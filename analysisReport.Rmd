@@ -279,6 +279,41 @@ The above plot shows the comparative current job titles of survey participants f
 
 
 
+------------------------------------------
+
+
+### Let's check the where the participants were Employed?
+
+I will make a dataframe with only top 15 employers type.
+```{r}
+#finding the top 15 employers type
+Employer<-as.data.frame(table(CurrentEmployerType)) %>% top_n(15) %>% arrange(desc(Freq))
+Employer[1,]<-NA
+names(Employer)<-c("EmployerType","Count")
+hchart(na.omit(Employer),type="column",hcaes(x=EmployerType,y=Count),color="#0E2E93") %>%
+  hc_title(text="Barplot of top 15 Type of Employers",align="center") %>%
+  hc_exporting(enabled=TRUE) %>%
+  hc_add_theme(hc_theme_elementary())
+
+
+
+EmployerType<-as.data.frame(table(CurrentEmployerType,Country)) %>% top_n(20) %>% arrange(desc(Freq))
+
+#assigning NA values to missing ones
+EmployerType[c(1,2,8,12,13,16,19,20),1]<-NA
+
+colnames(EmployerType)<-c("EmployerType","Country","Count")
+
+#plotting data
+hchart(na.omit(EmployerType),type="column",hcaes(x=EmployerType, y=Count,group=Country),color=c("#DE4968","#f1c40f","black")) %>%
+  hc_title(text="Barplot of Type of Employer and Country",align="center") %>%
+  hc_exporting(enabled=TRUE) %>%
+  hc_add_theme(hc_theme_elementary())
+
+
+
+
+```
 
 
 
