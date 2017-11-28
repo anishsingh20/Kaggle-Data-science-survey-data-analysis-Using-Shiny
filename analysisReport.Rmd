@@ -214,9 +214,18 @@ hchart(TopCoders,type="column",name=c("Do not write code","Code Writers"),hcaes(
 
 table(CareerSwitcher) #more have changed their jobs than others who haven't
 
+table(CurrentJobTitleSelect)
+
+#let's make a dataframe to plot a barplot
 jobdf<-as.data.frame(table(CurrentJobTitleSelect))
 jobdf[1,1]<-"Not answered"
 jobdf<-na.omit(jobdf)
+
+
+
+
+
+
 
 
 
