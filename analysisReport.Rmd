@@ -207,12 +207,19 @@ hchart(TopCoders,type="column",name=c("Do not write code","Code Writers"),hcaes(
 
 ---------------
 
-### Who all have switched their Carriers
+### Who all have switched their Carriers and their Current Job titles
 
 
 ```{r message=FALSE, warning=FALSE}
 
-table(CareerSwitcher  )
+table(CareerSwitcher) #more have changed their jobs than others who haven't
+
+jobdf<-as.data.frame(table(CurrentJobTitleSelect))
+jobdf[1,1]<-"Not answered"
+jobdf<-na.omit(jobdf)
+
+
+
 
 ```
 
