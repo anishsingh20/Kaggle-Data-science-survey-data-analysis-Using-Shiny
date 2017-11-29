@@ -144,6 +144,16 @@ hchart(genderTooldf,hcaes(x=MLToolNextYearSelect,y=Percent_male),name="Percent",
 
 table(MLMethodNextYearSelect)
 
+Mlmethod<-as.data.frame(table(MLMethodNextYearSelect)) %>% arrange(desc(Freq))
+
+Mlmethod[1,]<-NA
+names(Mlmethod)<-c("Method","Count")
+
+hchart(na.omit(Mlmethod),hcaes(x=Method,y=Count),type="column",name="Count",color="#FF5733") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of ML Method used by participants",align="center") %>%
+  hc_add_theme(hc_theme_elementary()) 
+  
 
 
 
