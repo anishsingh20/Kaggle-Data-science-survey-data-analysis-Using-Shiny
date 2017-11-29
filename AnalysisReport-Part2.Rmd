@@ -97,7 +97,7 @@ ggplot(aes(x=Country,y=total_count),data=countryTool) +
 
 ```
 
-We can notice that Every top 10 country uses *__Tensorflow__, followed by __python__ , then __R__* .
+We can notice that Every top 10 country uses *__Tensorflow__, followed by __python__ , then __R__* as their preferred tools for implementing machine learning and data science.
 
     
 
