@@ -17,3 +17,55 @@ This is the part 2 of this project.This is a data analytics project for mining a
 
 ##### 1) Part 2- Will mostly aim at analyzing things such as what is the most preferred tool for implementing Datascience, Most used ML method, learning platform,What language they recommend etc and other more specific answers related to datascience and machine learning given by the survey participants.
 
+
+
+###Let's get started
+
+
+Let's start with the most preferred tool for implementing DS and ML.
+
+```{r message=FALSE, warning=FALSE}
+attach(SurveyDf)
+
+table(MLToolNextYearSelect)
+tooldf<-as.data.frame(table(MLToolNextYearSelect)) %>% arrange(desc(Freq))
+#let's remove missing value
+tooldf[1,]<-NA
+tooldf<-na.omit(tooldf)
+names(tooldf)<-c("Tool","Count")
+#now let's plot the data
+hchart(tooldf,hcaes(x=Tool,y=Count),type="column",name="Count",color="#9B6ED8")
+
+
+toptooldf<-na.omit(tooldf) %>% arrange(desc(Count)) %>% top_n(10)
+#plotting a funnel chart of top 10 most used tools entered by the users
+hchart(toptooldf,hcaes(x=Tool,y=Count),type="funnel",name="Count")
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
