@@ -24,7 +24,15 @@ This is the part 2 of this project.This is a data analytics project for mining a
 
 Let's start with the most preferred tool for implementing DS and ML.
 
-```{r message=FALSE, warning=FALSE}
+```{r,message=FALSE, warning=FALSE}
+
+require(data.table)
+require(highcharter)
+require(ggplot2)
+require(tidyverse)
+
+SurveyDf<-fread("../Datasets/kagglesurvey2017/multipleChoiceResponses.csv") #for faster data reading
+
 attach(SurveyDf)
 
 table(MLToolNextYearSelect)
@@ -71,11 +79,25 @@ countryTool<-SurveyDf %>% group_by(MLToolNextYearSelect,Country) %>%
   summarise(total_count=n()) %>%
   arrange(desc(total_count))
 
+
+hchart(countryTool,hcaes(x=Country,y=total_count,group=MLToolNextYearSelect),type="column") %>% 
+  hc_title(text="Barplot of ",align="center") %>%
+  hc_exporting(enabled=TRUE) %>%
+  hc_add_theme(hc_theme_elementary())
+  
+
+ggplot(aes(x=Country,y=total_count),data=countryTool) +
+  geom_col(fill="purple") +
+  coord_flip() +
+  facet_wrap(~MLToolNextYearSelect)
+
+
+
 ```
 
+We can notice that Every top 10 country uses *__Tensorflow__, followed by __python__ , then __R__* .
 
-
-
+    
 
 
 
