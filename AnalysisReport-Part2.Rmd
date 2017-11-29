@@ -163,7 +163,7 @@ hchart(na.omit(Mlmethod),hcaes(x=Method,y=Count),type="column",name="Count",colo
 
     
 
-
+As we can notice the most used ML technique is *Deep learning and neural networks followed by time series analysis*.
 
 
 
