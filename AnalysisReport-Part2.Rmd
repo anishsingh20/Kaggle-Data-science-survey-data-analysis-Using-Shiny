@@ -56,6 +56,22 @@ hchart(toptooldf,hcaes(x=Tool,y=Count),type="funnel",name="Count",color=col) %>%
 
 ```
 
+-----------------------
+
+
+###Let's check Top countries uses which tools ?
+
+Let's first make a dataframe which consists of Top 10 particapnt's countries and grouped by the preferred tool entered by them which is then summarized by the total count.
+
+```{r message=FALSE, warning=FALSE}
+
+countryTool<-SurveyDf %>% group_by(MLToolNextYearSelect,Country) %>%
+  select(Country,MLToolNextYearSelect) %>% 
+  filter(Country %in% countryCount$Var1, MLToolNextYearSelect %in% toptooldf$Tool) %>%
+  summarise(total_count=n()) %>%
+  arrange(desc(total_count))
+
+```
 
 
 
