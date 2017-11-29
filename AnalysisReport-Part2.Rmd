@@ -34,12 +34,21 @@ tooldf[1,]<-NA
 tooldf<-na.omit(tooldf)
 names(tooldf)<-c("Tool","Count")
 #now let's plot the data
-hchart(tooldf,hcaes(x=Tool,y=Count),type="column",name="Count",color="#9B6ED8")
+hchart(tooldf,hcaes(x=Tool,y=Count),type="column",name="Count",color="#9B6ED8") %>%  
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of tools used by participants",align="center") %>%
+  hc_add_theme(hc_theme_elementary()) 
+
 
 
 toptooldf<-na.omit(tooldf) %>% arrange(desc(Count)) %>% top_n(10)
 #plotting a funnel chart of top 10 most used tools entered by the users
-hchart(toptooldf,hcaes(x=Tool,y=Count),type="funnel",name="Count")
+col <- c("#d35400", "#2980b9", "#2ecc71", "#f1c40f", "#2c3e50", "#7f8c8d","#000004", "#3B0F70", "#8C2981", "#DE4968")
+
+hchart(toptooldf,hcaes(x=Tool,y=Count),type="funnel",name="Count",color=col) %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Funnel chart of top 10 most used tools used by survey participants",align="center")
+
 
 
 
