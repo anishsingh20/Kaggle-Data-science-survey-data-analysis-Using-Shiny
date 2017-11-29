@@ -84,7 +84,7 @@ countryTool<-SurveyDf %>% group_by(MLToolNextYearSelect,Country) %>%
 
 
 hchart(countryTool,hcaes(x=Country,y=total_count,group=MLToolNextYearSelect),type="column") %>% 
-  hc_title(text="Barplot of ",align="center") %>%
+  hc_title(text="Barplot of Top 10 Country grouped by Tool",align="center") %>%
   hc_exporting(enabled=TRUE) 
   
 
@@ -95,9 +95,61 @@ ggplot(aes(x=Country,y=total_count),data=countryTool) +
 
 
 
+
 ```
 
 We can notice that Every top 10 country uses *__Tensorflow__, followed by __python__ , then __R__* as their preferred tools for implementing machine learning and data science.
+
+
+Let's see which gender prefers which tool amongst the top 10 most used tools?
+
+
+```{r, message=FALSE, warning=FALSE}
+genderTool<-SurveyDf %>% group_by(MLToolNextYearSelect,GenderSelect) %>%
+  select(GenderSelect,MLToolNextYearSelect) %>% 
+  filter(MLToolNextYearSelect %in% toptooldf$Tool,GenderSelect %in% c("Male","Female")) %>%
+  summarise(total_count=n()) %>%
+  arrange(desc(total_count))
+
+
+hchart(genderTool,hcaes(x=MLToolNextYearSelect,y=total_count,group=GenderSelect),type="column") %>%   hc_title(text="Gender vs Most preferred tool",align="center") %>%
+  hc_exporting(enabled=TRUE) 
+
+#checking the ratio of male to female users for tools-
+genderTooldf<-genderTool %>% spread(key = GenderSelect,value=total_count) %>%
+  mutate(Percent_male=round((Male/(Male+Female))*100,2),Percent_female=round((Female/(Male+Female))*100,2)) %>%
+  arrange()
+
+hchart(genderTooldf,hcaes(x=MLToolNextYearSelect,y=Percent_female),name="Percent",type="column",color="#ED2FAE") %>%   hc_title(text="Percent of female using tools out of 100",align="center") %>%
+  hc_exporting(enabled=TRUE) 
+
+
+hchart(genderTooldf,hcaes(x=MLToolNextYearSelect,y=Percent_male),name="Percent",type="column",color="#F36A20") %>%   hc_title(text="Percent of Male using tools out of 100",align="center") %>%
+  hc_exporting(enabled=TRUE) 
+
+
+
+```
+
+
+
+-----------------------------------------
+
+
+###Let's analyze the most used ML method?
+
+
+
+```{r message=FALSE, warning=FALSE}
+
+table(MLMethodNextYearSelect)
+
+
+
+
+
+
+```
 
     
 
