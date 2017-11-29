@@ -1,5 +1,5 @@
 ---
-title: "Analyzing Kaggle Data Science Survey Data-2017"
+title: "Analyzing Kaggle Data Science Survey Data-2017:PART-2"
 author: "Anish Singh Walia"
 output:
   html_document:
@@ -15,7 +15,7 @@ This is the part 2 of this project.This is a data analytics project for mining a
 
 
 
-##### 1) Part 2- Will mostly aim at analyzing things such as what is the most preferred tool for implementing Datascience, Most used ML method, learning platform,What language they recommend etc and other more specific answers related to datascience and machine learning given by the survey participants.
+#### 1) Part 2- Will mostly aim at analyzing things such as what is the most preferred tool for implementing Datascience, Most used ML method, learning platform,What language they recommend etc and other more specific answers related to datascience and machine learning given by the survey participants.
 
 
 
