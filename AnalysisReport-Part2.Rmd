@@ -72,6 +72,9 @@ hchart(toptooldf,hcaes(x=Tool,y=Count),type="funnel",name="Count",color=col) %>%
 Let's first make a dataframe which consists of Top 10 particapnt's countries and grouped by the preferred tool entered by them which is then summarized by the total count.
 
 ```{r message=FALSE, warning=FALSE}
+#dataframe of top 10 countries 
+countryCount<-as.data.frame(table(SurveyDf$Country)) %>%  top_n(10)
+
 
 countryTool<-SurveyDf %>% group_by(MLToolNextYearSelect,Country) %>%
   select(Country,MLToolNextYearSelect) %>% 
@@ -82,8 +85,7 @@ countryTool<-SurveyDf %>% group_by(MLToolNextYearSelect,Country) %>%
 
 hchart(countryTool,hcaes(x=Country,y=total_count,group=MLToolNextYearSelect),type="column") %>% 
   hc_title(text="Barplot of ",align="center") %>%
-  hc_exporting(enabled=TRUE) %>%
-  hc_add_theme(hc_theme_elementary())
+  hc_exporting(enabled=TRUE) 
   
 
 ggplot(aes(x=Country,y=total_count),data=countryTool) +
