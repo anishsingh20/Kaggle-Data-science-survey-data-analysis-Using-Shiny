@@ -156,7 +156,10 @@ hchart(na.omit(Mlmethod),hcaes(x=Method,y=Count),type="column",name="Count",colo
   
 
 #treemap of most preferred methods of ML
-hchart(Mlmethod, "treemap", hcaes(x = Method, value = Count,color=Count))
+hchart(Mlmethod, "treemap", hcaes(x = Method, value = Count,color=Count)) %>%
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Treemap of ML Method used by participants",align="center") 
+  
 
 
 
@@ -261,6 +264,24 @@ hchart(na.omit(RussiaMethoddf),hcaes(x=MLMethodNextYearSelect,y=total_count,colo
 -----------------
 
 USA,India and China combined
+
+
+```{r}
+
+MethodTopCountry<-countryMethod %>% filter(Country %in% c("United States","India","United Kingdom"))
+
+MethodTopCountry[c(1,2,7),]<-NA
+
+
+hchart(na.omit(MethodTopCountry),hcaes(x=MLMethodNextYearSelect,y=total_count,group=Country),type="column",color=c("#FFA500","#C71585","#00FF00")) %>%
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of ML Method used by top 3 participants Countries",align="center") %>%
+  hc_add_theme(hc_theme_elementary()) 
+
+
+
+```
+
 
 
 
