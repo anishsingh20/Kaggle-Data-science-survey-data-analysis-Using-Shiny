@@ -226,6 +226,19 @@ hchart(na.omit(Indiamethoddf),hcaes(x=MLMethodNextYearSelect,y=total_count),type
 
 For China.
 
+```{r}
+ChinaMethoddf<-countryMethod %>% filter(Country=="People 's Republic of China") %>% arrange(desc(total_count))
+
+ChinaMethoddf[2,]<-NA
+
+hchart(na.omit(ChinaMethoddf),hcaes(x=MLMethodNextYearSelect,y=total_count,color=MLMethodNextYearSelect),type="column") %>%
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of ML Method used by participants in China",align="center") %>%
+  hc_add_theme(hc_theme_elementary()) 
+  
+```
+
+
 
 
 
