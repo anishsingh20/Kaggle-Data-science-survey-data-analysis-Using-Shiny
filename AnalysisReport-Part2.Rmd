@@ -239,6 +239,20 @@ hchart(na.omit(ChinaMethoddf),hcaes(x=MLMethodNextYearSelect,y=total_count,color
 ```
 
 
+For Russia.
+
+
+```{r}
+RussiaMethoddf<-countryMethod %>% filter(Country=="Russia") %>% arrange(desc(total_count))
+
+RussiaMethoddf[1,]<-NA
+
+hchart(na.omit(RussiaMethoddf),hcaes(x=MLMethodNextYearSelect,y=total_count,color=MLMethodNextYearSelect),type="column") %>%
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of ML Method used by participants in Russia",align="center") %>%
+  hc_add_theme(hc_theme_elementary()) 
+
+```
 
 
 
