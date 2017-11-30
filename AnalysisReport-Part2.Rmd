@@ -207,6 +207,25 @@ hchart(na.omit(USmethoddf),hcaes(x=MLMethodNextYearSelect,y=total_count),type="c
 ```
 
 
+For India.
+```{r message=FALSE, warning=FALSE}
+
+Indiamethoddf<-countryMethod %>% filter(Country=="India") %>% arrange(desc(total_count))
+
+Indiamethoddf[1,]<-NA
+
+hchart(na.omit(Indiamethoddf),hcaes(x=MLMethodNextYearSelect,y=total_count),type="column",color="red") %>%
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of ML Method used by participants in India",align="center") %>%
+  hc_add_theme(hc_theme_elementary()) 
+  
+
+```
+
+
+
+For China.
+
 
 
 
