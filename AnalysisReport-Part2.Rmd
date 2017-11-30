@@ -168,7 +168,43 @@ As we can notice the most used ML technique is *Deep learning and neural network
 
 
 
+Let's check the countrywise usage of ML methods.Again I am going to do it for top 10 countries.
 
+
+```{r message=FALSE, warning=FALSE}
+
+
+countryMethod<-SurveyDf %>% select(Country,MLMethodNextYearSelect) %>%
+  group_by(Country,MLMethodNextYearSelect) %>%
+  filter(Country %in% countryCount$Var1) %>%
+  summarize(total_count=n())%>%
+  arrange(desc(total_count))
+
+
+
+
+```
+
+
+Let's first filter for United States and check the most used tools.
+
+
+```{r message=FALSE, warning=FALSE}
+
+#First for United states
+USmethoddf<-countryMethod %>% filter(Country=="United States") %>% arrange(desc(total_count))
+
+USmethoddf[1,]<-NA
+
+hchart(na.omit(USmethoddf),hcaes(x=MLMethodNextYearSelect,y=total_count),type="column",color="#BFD13D") %>%
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of ML Method used by participants in United States",align="center") %>%
+  hc_add_theme(hc_theme_elementary()) 
+  
+
+
+
+```
 
 
 
