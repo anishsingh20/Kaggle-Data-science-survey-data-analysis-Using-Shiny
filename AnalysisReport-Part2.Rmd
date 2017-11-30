@@ -259,6 +259,22 @@ hchart(na.omit(RussiaMethoddf),hcaes(x=MLMethodNextYearSelect,y=total_count,colo
 ```
 
 
+For United Kingdom.
+
+
+
+```{r message=FALSE, warning=FALSE}
+
+UKMethoddf<-countryMethod %>% filter(Country=="United Kingdom") %>% arrange(desc(total_count))
+
+UKMethoddf[1,]<-NA
+
+hchart(na.omit(UKMethoddf),hcaes(x=MLMethodNextYearSelect,y=total_count,color=MLMethodNextYearSelect),type="column") %>%
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of ML Method used by participants in UK",align="center") %>%
+  hc_add_theme(hc_theme_elementary()) 
+
+```
 
 
 -----------------
