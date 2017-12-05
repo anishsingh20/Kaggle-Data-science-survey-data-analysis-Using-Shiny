@@ -310,12 +310,47 @@ hchart(na.omit(MethodTopCountry),hcaes(x=MLMethodNextYearSelect,y=total_count,gr
 
 table(LanguageRecommendationSelect)
 
-toolRecomdf<-as.data.frame(table(LanguageRecommendationSelect))
+toolRecomdf<-as.data.frame(table(LanguageRecommendationSelect)) 
 names(toolRecomdf)<-c("tool","count")
+toolRecomdf[1,]<-0 
+toolRecomdf <- toolRecomdf %>% arrange(desc(count))
 
-hchart(toolRecomdf,hcaes(x=tool,y=count),color="#56C1FE",type="column")
+
+hchart(na.omit(toolRecomdf),hcaes(x=tool,y=count),color="#56C1FE",type="column") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of Recommended tools of participants",align="center") %>%
+  hc_add_theme(hc_theme_elementary()) 
 
 ```
+
+So from the above plot we can infer that most participants recommend *python, R and Sql* the most.
+
+--------------------------
+
+### Let's check from where participants collect data?
+
+
+Let's find the top 20 sources from where participants collect data. This is a multiple choice field. So it has multiple answers.
+```{r message=FALSE, warning=FALSE}
+
+publicData<-as.data.frame(table(PublicDatasetsSelect)) %>% arrange(desc(Freq)) %>% top_n(20)
+publicData[1,]<-NA
+names(publicData)<-c("source",'count')
+
+hchart(na.omit(publicData),hcaes(x=source,y=count),type="column",color="#26BA0B")
+
+
+
+```
+
+
+So we discover that mostly people prefer online platforms such as *Kaggle, data.worlds etc to download public data sets, followed by google search and scraping data from web and github* as data sources to do data science and analytics projects.
+
+
+
+
+
+
 
 
 
