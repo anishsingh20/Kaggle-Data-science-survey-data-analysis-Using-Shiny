@@ -279,7 +279,7 @@ hchart(na.omit(UKMethoddf),hcaes(x=MLMethodNextYearSelect,y=total_count,color=ML
 
 -----------------
 
-USA,India and China combined
+USA,India and China combined.
 
 
 ```{r}
@@ -299,6 +299,19 @@ hchart(na.omit(MethodTopCountry),hcaes(x=MLMethodNextYearSelect,y=total_count,gr
 ```
 
 
+------------------
+
+
+
+### Let's check which is the most recommended tool by participants 
+
+
+```{r message=FALSE, warning=FALSE}
+
+table(LanguageRecommendationSelect)
+
+
+```
 
 
 
