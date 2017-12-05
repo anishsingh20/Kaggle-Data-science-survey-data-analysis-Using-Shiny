@@ -310,6 +310,10 @@ hchart(na.omit(MethodTopCountry),hcaes(x=MLMethodNextYearSelect,y=total_count,gr
 
 table(LanguageRecommendationSelect)
 
+toolRecomdf<-as.data.frame(table(LanguageRecommendationSelect))
+names(toolRecomdf)<-c("tool","count")
+
+hchart(toolRecomdf,hcaes(x=tool,y=count),color="#56C1FE",type="column")
 
 ```
 
