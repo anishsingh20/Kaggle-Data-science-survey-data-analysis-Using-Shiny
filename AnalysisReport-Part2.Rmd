@@ -189,8 +189,7 @@ Let's check the distribution of ages of participants and their preferred method.
 
 ```{r message=FALSE, warning=FALSE}
 
-hcboxplot(x = SurveyDf$Age, var =SurveyDf$MLMethodNextYearSelect ,
-          name = "Age", color = "#E127AB",outliers = FALSE) %>%
+hcboxplot(x = SurveyDf$Age, var =SurveyDf$MLMethodNextYearSelect ,name = "Age", color = "#E127AB",outliers = FALSE) %>%
   hc_chart(type="column") %>% 
   hc_exporting(enabled = TRUE) %>%
   hc_title(text="Boxplot of ML Method used by participants and their Ages",align="center") %>% 
@@ -351,6 +350,14 @@ hchart(na.omit(toolRecomdf),hcaes(x=tool,y=count),color="#56C1FE",type="column")
   hc_exporting(enabled = TRUE) %>%
   hc_title(text="Barplot of Recommended tools of participants",align="center") %>%
   hc_add_theme(hc_theme_elementary()) 
+
+
+
+hcboxplot(x = SurveyDf$Age , var = SurveyDf$LanguageRecommendationSelect,name = "Age", color = "#E127AB",outliers = FALSE) %>%
+  hc_chart(type="column") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Boxplot of tools recommended by participants and their Ages",align="center") %>% 
+  hc_add_theme(hc_theme_elementary())
 
 ```
 
