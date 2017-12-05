@@ -132,6 +132,19 @@ hchart(genderTooldf,hcaes(x=MLToolNextYearSelect,y=Percent_male),name="Percent",
 ```
 
 
+Now let's see which ages group of people use which tool.
+
+
+```{r message=FALSE, warning=FALSE}
+
+AgeTooldf<-SurveyDf %>% group_by(MLToolNextYearSelect) %>%
+  filter(MLToolNextYearSelect %in% toptooldf$Tool) %>%
+  summarise(median_age=median(Age))
+
+```
+
+
+
 
 -----------------------------------------
 
@@ -163,6 +176,8 @@ hchart(Mlmethod, "treemap", hcaes(x = Method, value = Count,color=Count)) %>%
 
 
 
+
+
 ```
 
     
@@ -170,6 +185,22 @@ hchart(Mlmethod, "treemap", hcaes(x = Method, value = Count,color=Count)) %>%
 As we can notice the most used ML technique is *Deep learning and neural networks followed by time series analysis*.
 
 
+Let's check the distribution of ages of participants and their preferred method.
+
+```{r message=FALSE, warning=FALSE}
+
+hcboxplot(x = SurveyDf$Age, var =SurveyDf$MLMethodNextYearSelect ,
+          name = "Age", color = "#E127AB",outliers = FALSE) %>%
+  hc_chart(type="column") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Boxplot of ML Method used by participants and their Ages",align="center") %>% 
+  hc_add_theme(hc_theme_elementary())
+  
+
+```
+
+
+------------
 
 
 Let's check the countrywise usage of ML methods.Again I am going to do it for top 10 countries.
@@ -345,6 +376,9 @@ hchart(na.omit(publicData),hcaes(x=source,y=count),type="column",color="#26BA0B"
 
 
 So we discover that mostly people prefer online platforms such as *Kaggle, data.worlds etc to download public data sets, followed by google search and scraping data from web and github* as data sources to do data science and analytics projects.
+
+
+
 
 
 
