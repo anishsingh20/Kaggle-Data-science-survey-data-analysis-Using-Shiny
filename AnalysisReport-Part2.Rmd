@@ -132,18 +132,25 @@ hchart(genderTooldf,hcaes(x=MLToolNextYearSelect,y=Percent_male),name="Percent",
 ```
 
 
-Now let's see which ages group of people use which tool.
+Now let's see which ages group of people use which tool. I will only check the distribution of the top used tools and the ages of participants.
 
 
 ```{r message=FALSE, warning=FALSE}
 
 AgeTooldf<-SurveyDf %>% group_by(MLToolNextYearSelect) %>%
-  filter(MLToolNextYearSelect %in% toptooldf$Tool) %>%
-  summarise(median_age=median(Age))
+  filter(MLToolNextYearSelect %in% c("TensorFlow","R","Python","Spark / MLlib","Amazon Web services","Hadoop/Hive/Pig","Google Cloud Compute","Jupyter notebooks")) %>% 
+  select(MLToolNextYearSelect,Age)
+
+hcboxplot(x = AgeTooldf$Age, var = AgeTooldf$MLToolNextYearSelect ,name = "Age", color = "#FF5733",outliers = FALSE) %>%
+  hc_chart(type="column") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Boxplot of Top 3 Ml tools used by participants and their Ages",align="center") %>% 
+  hc_add_theme(hc_theme_elementary())
+  
 
 ```
 
-
+__From the above plots R has highest median age of 31 , compared to other tools. Whereas Hadoop and Python are used by relatively younger data scientists as inferred from this boxplot.__
 
 
 -----------------------------------------
