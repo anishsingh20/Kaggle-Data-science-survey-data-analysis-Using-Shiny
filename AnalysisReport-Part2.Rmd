@@ -164,12 +164,29 @@ meanAgeTool<-SurveyDf %>% group_by(MLToolNextYearSelect) %>%
 
 #rounding off the mean ages
 meanAgeTool$meanAge<-round(meanAgeTool$meanAge,1)
+names(meanAgeTool)<-c("Tool","MeanAge")#renaming the columns
 
+
+topAgeTool<-meanAgeTool %>% filter(Tool %in% toptooldf$Tool)
+col<-c("#d35400", "#2980b9", "#2ecc71", "#f1c40f", "#2c3e50", "#7f8c8d","#000004", "#3B0F70", "#8C2981", "#DE4968")
 #let's make a scatterplot
+
+hchart(meanAgeTool,hcaes(x=Tool,y=MeanAge,size=MeanAge),name="Tool" ,type="bubble")
+
+hchart(topAgeTool,hcaes(x=Tool,y=MeanAge,size=MeanAge),color="#7CE3B0",name="Mean Age" ,type="bubble") %>% 
+  hc_chart(type="column") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Bubble chart of top 10 ML tools used by participants and their Mean Ages",align="center") %>% 
+  hc_add_theme(hc_theme_elementary())
+  
 
 
 
 ```
+
+
+
+*From the above plot of mean ages , we can see that R users have higher mean age than Python,Tensorflow and Hadoop users.This means Python and Hadoop is more famous and used amongst relatively younger data scientists.*
 
 
 -----------------------------------------
