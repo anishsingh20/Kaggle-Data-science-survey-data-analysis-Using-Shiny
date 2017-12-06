@@ -153,6 +153,25 @@ hcboxplot(x = AgeTooldf$Age, var = AgeTooldf$MLToolNextYearSelect ,name = "Age",
 __From the above plots R has highest median age of 31 , compared to other tools. Whereas Hadoop and Python are used by relatively younger data scientists as inferred from this boxplot.__
 
 
+Let's check the mean ages of the participants and the tools entered and used by them and plot them. Let's summarize the data using dplyr package.
+
+
+```{r message=FALSE, warning=FALSE}
+
+meanAgeTool<-SurveyDf %>% group_by(MLToolNextYearSelect) %>%
+ summarise(meanAge=mean(Age,na.rm=T)) %>%      
+  arrange(desc(meanAge))
+
+#rounding off the mean ages
+meanAgeTool$meanAge<-round(meanAgeTool$meanAge,1)
+
+#let's make a scatterplot
+
+
+
+```
+
+
 -----------------------------------------
 
 
