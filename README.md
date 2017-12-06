@@ -7,4 +7,4 @@ Link to the project Documents-
 1) Part-One-:http://rpubs.com/anish20/kaggleDataScienceSurvey2017
 
 
-Part-two-: http://rpubs.com/anish20/kaggleSurvey2
+2) Part-two-: http://rpubs.com/anish20/kaggleSurvey2
