@@ -4,4 +4,4 @@
 .Ruserdata
 *.html
 .Rproj
-\reconnect
+reconnect

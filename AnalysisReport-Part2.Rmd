@@ -434,6 +434,28 @@ So we discover that mostly people prefer online platforms such as *Kaggle, data.
 
 
 
+----------------------------------------
+
+
+### Let's check which is the favourite Platform to learn Data science?
+
+
+The filed which I am going to use is a multiple choice field which a survey participant can select multiple answers.
+```{r message=FALSE, warning=FALSE}
+
+#Let's check for the top 10 learning platforms
+platformdf<-SurveyDf %>% group_by(LearningPlatformSelect) %>%
+  summarise(count=n()) %>% top_n(20) %>% arrange(desc(count))
+platformdf[1,]<-NA
+
+hchart(na.omit(platformdf),hcaes(x=LearningPlatformSelect,y=count),type="column",color="yellow")
+
+
+```
+
+
+
+As expected most people prefer Kaggle, Online MOOC courses to learn data science related topics and subjects.
 
 
 
