@@ -448,7 +448,10 @@ platformdf<-SurveyDf %>% group_by(LearningPlatformSelect) %>%
   summarise(count=n()) %>% top_n(20) %>% arrange(desc(count))
 platformdf[1,]<-NA
 
-hchart(na.omit(platformdf),hcaes(x=LearningPlatformSelect,y=count),type="column",color="yellow")
+hchart(na.omit(platformdf),hcaes(x=LearningPlatformSelect,y=count),type="column",color="yellow") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of top 20 platforms used by participants to learn Data science",align="center") %>% 
+  hc_add_theme(hc_theme_elementary())
 
 
 ```
@@ -456,6 +459,21 @@ hchart(na.omit(platformdf),hcaes(x=LearningPlatformSelect,y=count),type="column"
 
 
 As expected most people prefer Kaggle, Online MOOC courses to learn data science related topics and subjects.
+
+Now let's check and do some bi-variate analysis of Learning platform with other major variables.
+
+a) First let's check which age group prefers which platform. Let's do some data aggregation and summarization to find __mean__ of ages grouped by the learning platform.
+
+
+```{r message=FALSE, warning=FALSE}
+ageplatform <-SurveyDf %>% group_by(LearningPlatformSelect) %>% 
+  filter(LearningPlatformSelect %in% platformdf$LearningPlatformSelect) %>% 
+  summarise(mean_age=mean(Age))
+
+
+```
+
+
 
 
 
