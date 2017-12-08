@@ -470,6 +470,8 @@ ageplatform <-SurveyDf %>% filter(LearningPlatformSelect %in% platformdf$Learnin
   group_by(LearningPlatformSelect) %>% 
   select(Age,LearningPlatformSelect)
 
+ageplatform<-na.omit(ageplatform)
+
 #let's first make a boxplot
 
 hcboxplot(x = ageplatform$Age , var = ageplatform$LearningPlatformSelect,name = "Age", color = "cayn",outliers = FALSE) %>%
@@ -478,6 +480,7 @@ hcboxplot(x = ageplatform$Age , var = ageplatform$LearningPlatformSelect,name = 
   hc_title(text="Boxplot of learning platform used by participants and their Ages",align="center") %>% 
   hc_add_theme(hc_theme_elementary()) 
 
+by(ageplatform$Age,ageplatform$LearningPlatformSelect,summary) #summary statistics of age grouped by learning platform
 
 ```
 
@@ -485,7 +488,41 @@ hcboxplot(x = ageplatform$Age , var = ageplatform$LearningPlatformSelect,name = 
 
 Let's summarize and calculate mean ages for more clear picture and understanding.
 
-```{r}
+```{r message=FALSE, warning=FALSE}
+
+MeanAgePlatform<-ageplatform %>% group_by(LearningPlatformSelect) %>%
+  summarise(mean_age=round(mean(Age),1)) %>% arrange(desc(mean_age))
+
+
+hchart(MeanAgePlatform,hcaes(x=LearningPlatformSelect,y=mean_age),type="scatter",name="Mean Age",color="#596536") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Scatter plot of mean of ages and the learning platform",align="center") %>% 
+  hc_add_theme(hc_theme_elementary()) 
+  
+
+```
+
+
+---------------------
+
+Pie charts of the usefullness of each of the learning platform entered by the survey participants.
+
+
+```{r message=FALSE, warning=FALSE}
+
+df<- SurveyDf %>% select(LearningPlatformUsefulnessArxiv,LearningPlatformUsefulnessYouTube,LearningPlatformUsefulnessKaggle,LearningPlatformUsefulnessCollege,LearningPlatformUsefulnessCourses) 
+df<-na.omit(df)
+
+
+
+  # Data
+  hchart(df$LearningPlatformUsefulnessArxiv, "pie") 
+  hchart(df$LearningPlatformUsefulnessCourses, "pie")  
+  hchart(df$LearningPlatformUsefulnessCollege, "pie")  
+  hchart(df$LearningPlatformUsefulnessKaggle, "pie")  
+  hchart(df$LearningPlatformUsefulnessYouTube, "pie")  
+  
+  
 
 ```
 
