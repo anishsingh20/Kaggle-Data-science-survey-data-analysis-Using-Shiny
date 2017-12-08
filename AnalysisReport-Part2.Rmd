@@ -466,15 +466,28 @@ a) First let's check which age group prefers which platform. Let's do some data 
 
 
 ```{r message=FALSE, warning=FALSE}
-ageplatform <-SurveyDf %>% group_by(LearningPlatformSelect) %>% 
-  filter(LearningPlatformSelect %in% platformdf$LearningPlatformSelect) %>% 
-  summarise(mean_age=mean(Age))
+ageplatform <-SurveyDf %>% filter(LearningPlatformSelect %in% platformdf$LearningPlatformSelect) %>% 
+  group_by(LearningPlatformSelect) %>% 
+  select(Age,LearningPlatformSelect)
+
+#let's first make a boxplot
+
+hcboxplot(x = ageplatform$Age , var = ageplatform$LearningPlatformSelect,name = "Age", color = "cayn",outliers = FALSE) %>%
+  hc_chart(type="column") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Boxplot of learning platform used by participants and their Ages",align="center") %>% 
+  hc_add_theme(hc_theme_elementary()) 
 
 
 ```
 
+*From the above boxplot we can see that younger participants generally prefer arvix and youtube videos more as the median ages for these platforms is least i.e age of 26.*
 
+Let's summarize and calculate mean ages for more clear picture and understanding.
 
+```{r}
+
+```
 
 
 
