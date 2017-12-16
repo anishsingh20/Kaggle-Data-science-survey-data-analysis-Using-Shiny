@@ -8,3 +8,5 @@ Link to the project Documents-
 
 
 2) Part-two-: http://rpubs.com/anish20/kaggleSurvey2
+
+3) Part-three-: http://rpubs.com/anish20/kaggleSurvey3
