@@ -269,11 +269,64 @@ So we cant notice that *Logistic regression, Decision trees, Random forets* are 
 -----------------------
 
 
-###Let's check which sort of data the most participants deal with at work ? 
+###Let's check which Learning algorithm participants use at work ? 
+
+Now we will check which machine learning algorithm is most used by the participants at their work.
 
 
 ```{r}
-table()
+
+MLalgoWork<-SurveyDf %>% group_by(WorkAlgorithmsSelect) %>%
+  summarise(count=n()) %>%
+  arrange(desc(count)) %>%
+  top_n(20)
+
+MLalgoWork[c(1,3),]<-NA
+
+
+hchart(na.omit(MLalgoWork),hcaes(x=WorkAlgorithmsSelect,y=count),type="column",color="green",name="count") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of Most used ML algorithms at Work",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
+  
+
 
 ```
+
+
+> Again as we can see from the above plot, *Regression and Logistic regression and decision trees* lead the pack as the most used learning algorithms which the participants use at work.
+
+
+
+----------------------
+
+
+### Now let's check which tools are used most at work?
+
+This field answers -For work, which data science/analytics tools, technologies, and languages the participants have used in the past year? 
+
+We are going to find tht top 20 tools.
+
+
+```{r}
+
+ToolatWork<-SurveyDf %>% group_by(WorkToolsSelect) %>%
+  summarise(count=n()) %>%
+  arrange(desc(count)) %>%
+  top_n(20)
+
+ToolatWork[c(1),]<-NA
+
+
+hchart(na.omit(ToolatWork),hcaes(x=WorkToolsSelect,y=count),type="column",color="#7C0E3E",name="count") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of Most used data science tools used at Work",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
+
+```
+
+> From the above plot we can see that *Python and R are collectively used* by datascientists the most as entered by the survey participants. Hence Python and R still tops the most used tools at work according to the survey.
+
+
+
 
