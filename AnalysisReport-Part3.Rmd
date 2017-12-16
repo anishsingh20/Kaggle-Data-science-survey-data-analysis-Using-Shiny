@@ -59,5 +59,40 @@ hence one can see that one of the most famous and preferred blog sites are __R b
 
 
 
+----------------------------
+
+2) Let's now study how long aprticipants have been learning data science-
+
+```{r message=FALSE, warning=FALSE}
+table(LearningDataScienceTime)
+
+hchart(SurveyDf$LearningDataScienceTime,type="pie",name="count")
+
+```
+
+So most of the participants have started learning data science in the past year itself or its been less than a year since they started studying learning data science.
+
+
+Let's check the age distribution of the particpiants and for how long they have been learning data science.
+
+```{r}
+
+hcboxplot(x=SurveyDf$Age,var=SurveyDf$LearningDataScienceTime,outliers = F,color="#09870D",name="Age Distribution") %>%
+hc_chart(type="column")  %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Boxplot of ages and the learning time of participants",align="center") %>%
+  hc_add_theme(hc_theme_elementary()) 
+
+```
+
+The above plot was quiet predictable as people with less time learning data science are younger.
+
+
+
+---------------------------
+
+
+
+
 
 
