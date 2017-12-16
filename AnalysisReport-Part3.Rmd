@@ -7,6 +7,18 @@ output:
 ---
 
 
+```{r,echo=FALSE,results='hide' ,message=FALSE, warning=FALSE, r,echo=FALSE, results='hide'}
+require(data.table)
+require(highcharter)
+require(ggplot2)
+require(tidyverse)
+
+SurveyDf<-fread("../Datasets/kagglesurvey2017/multipleChoiceResponses.csv") #for faster data reading
+
+attach(SurveyDf)
+```
+
+
 
 
 ## AIM 
@@ -15,18 +27,37 @@ This is the part 3 of this project.This is a data analytics project for mining a
 
 
 
-#### 1) Part 3- This section will analyze and study the professional lives of the participants, their major degree ,time spend studying data science topics, what job titles they hold,which ML method they actually use in the industries , which bolgs the participants prefer the most for studying data science etc.
+## 1) Part 3- This section will analyze and study the professional lives of the participants, their major degree ,time spend studying data science topics, what job titles they hold,which ML method they actually use in the industries , which bolgs the participants prefer the most for studying data science etc.
 
 
 
-Let's get started.
+###Let's get started.
 
-```{r}
+1) Let's start with the most preferred blog sites for learning datascience-This is a multiple answer field. Let's find the top 15 most preferred answers.
+
+```{r message=FALSE, warning=FALSE}
+
+blogs<-SurveyDf %>% group_by(BlogsPodcastsNewslettersSelect) %>%
+  summarise(count=n()) %>% 
+  top_n(15) %>% 
+  arrange(desc(count))
+
+#removing NA value
+blogs[1,1]<-NA
+colnames(blogs)<-c("Blogname","Count")
+
+#let's plot them
+hchart(na.omit(blogs),hcaes(x=Blogname,y=Count),type="column",color="#062D67") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of most preferred blogs for learning",align="center") %>%
+  hc_add_theme(hc_theme_elementary()) 
+
+
 
 ```
+hence one can see that one of the most famous and preferred blog sites are __R bloggers and Kdnuggets__.
 
 
 
-###Let's get started
 
 
