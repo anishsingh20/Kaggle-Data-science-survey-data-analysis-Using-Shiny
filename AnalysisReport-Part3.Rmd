@@ -27,7 +27,7 @@ This is the part 3 of this project.This is a data analytics project for mining a
 
 
 
-## 1) Part 3- This section will analyze and study the professional lives of the participants, their major degree ,time spend studying data science topics, what job titles they hold,which ML method they actually use in the industries , which bolgs the participants prefer the most for studying data science etc.
+> Part 3 - This section will analyze and study the professional lives of the participants, their major degree ,time spend studying data science topics, what job titles they hold,which ML method they actually use in the industries , which bolgs the participants prefer the most for studying data science etc.
 
 
 
@@ -218,7 +218,7 @@ knowlegdeDf[1,]<-NA
 
 hchart(na.omit(knowlegdeDf),hcaes(x=ProveKnowledgeSelect,y=count),type="column",color="#049382",name="count") %>% 
   hc_exporting(enabled = TRUE) %>%
-  hc_title(text="Barplot of what proves you have Datscience knowledge",align="center") %>%
+  hc_title(text="Barplot of what proves you have Datascience knowledge",align="center") %>%
   hc_add_theme(hc_theme_elementary())
   
 
@@ -227,5 +227,53 @@ hchart(na.omit(knowlegdeDf),hcaes(x=ProveKnowledgeSelect,y=count),type="column",
 
 
 
+Let's now heck the formal education of participants:
 
+```{r}
+
+table(FormalEducation)
+
+```
+
+
+
+------------------------
+
+
+Let's check the most famous machine learning technique in which participants consider themselves competent?
+
+
+```{r}
+Mltechique<-SurveyDf %>% group_by(MLTechniquesSelect) %>%
+  summarise(count=n()) %>% 
+  arrange(desc(count)) %>%
+  top_n(20)
+  
+Mltechique[1,]<-NA
+
+hchart(na.omit(Mltechique),hcaes(x=MLTechniquesSelect,y=count),type="column",color="purple",name="count") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of competent ML techniques of participants",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
+  
+  
+
+```
+
+So we cant notice that *Logistic regression, Decision trees, Random forets* are the top 2 most competent techniques in which the participants are competent and can successfully implement and are most efficient in implementing. 
+
+
+
+
+
+-----------------------
+
+
+###Let's check which sort of data the most participants deal with at work ? 
+
+
+```{r}
+table()
+
+```
 
