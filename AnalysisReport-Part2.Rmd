@@ -511,7 +511,7 @@ Pie charts of the usefullness of each of the learning platform entered by the su
 ```{r message=FALSE, warning=FALSE}
 
 df<- SurveyDf %>% select(LearningPlatformUsefulnessArxiv,LearningPlatformUsefulnessYouTube,LearningPlatformUsefulnessKaggle,LearningPlatformUsefulnessCollege,LearningPlatformUsefulnessCourses) 
-df<-na.omit(df)
+df<-df[complete.cases(df),]
 
 
 
@@ -544,7 +544,6 @@ df<-na.omit(df)
   
 
 ```
-
 
 
 

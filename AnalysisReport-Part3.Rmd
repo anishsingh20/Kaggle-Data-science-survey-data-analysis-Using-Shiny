@@ -1,0 +1,32 @@
+---
+title: "Analyzing Kaggle Data Science Survey Data-2017:PART-3"
+author: "Anish Singh Walia"
+output:
+  html_document:
+    df_print: paged
+---
+
+
+
+
+## AIM 
+
+This is the part 3 of this project.This is a data analytics project for mining analyzing, visualizing the data collected by the Kaggle Data science survey conducted in 2017.
+
+
+
+#### 1) Part 3- This section will analyze and study the professional lives of the participants, their major degree ,time spend studying data science topics, what job titles they hold,which ML method they actually use in the industries , which bolgs the participants prefer the most for studying data science etc.
+
+
+
+Let's get started.
+
+```{r}
+
+```
+
+
+
+###Let's get started
+
+
