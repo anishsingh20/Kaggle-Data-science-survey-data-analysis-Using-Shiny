@@ -203,3 +203,29 @@ hchart(na.omit(KaggleRankSkill),hcaes(x=JobSkillImportanceKaggleRanking,y=count)
 
 
 
+-----------------------
+
+
+### What proves that you have good Data science knowledge?
+
+
+```{r}
+knowlegdeDf<-SurveyDf %>% group_by(ProveKnowledgeSelect) %>%
+  summarise(count=n()) %>%
+  arrange(desc(count))
+
+knowlegdeDf[1,]<-NA 
+
+hchart(na.omit(knowlegdeDf),hcaes(x=ProveKnowledgeSelect,y=count),type="column",color="#049382",name="count") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of what proves you have Datscience knowledge",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
+  
+
+
+```
+
+
+
+
+
