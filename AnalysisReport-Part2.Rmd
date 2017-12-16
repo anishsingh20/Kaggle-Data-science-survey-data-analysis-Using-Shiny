@@ -516,11 +516,30 @@ df<-na.omit(df)
 
 
   # Data
-  hchart(df$LearningPlatformUsefulnessArxiv, "pie") 
-  hchart(df$LearningPlatformUsefulnessCourses, "pie")  
-  hchart(df$LearningPlatformUsefulnessCollege, "pie")  
-  hchart(df$LearningPlatformUsefulnessKaggle, "pie")  
-  hchart(df$LearningPlatformUsefulnessYouTube, "pie")  
+  hchart(df$LearningPlatformUsefulnessArxiv, "pie") %>% 
+    hc_exporting(enabled = TRUE) %>%
+    hc_title(text="Pie chart of Question How usefull is Arxiv as learning platform",align="center") %>% 
+  hc_add_theme(hc_theme_elementary())
+  
+  hchart(df$LearningPlatformUsefulnessCourses, "pie")  %>% 
+    hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Pie chart of Question How usefull are Online courses as learning platform",align="center") %>% 
+  hc_add_theme(hc_theme_elementary()) 
+  
+  hchart(df$LearningPlatformUsefulnessCollege, "pie")  %>% 
+    hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Pie chart of Question How usefull us Collage as learning platform",align="center") %>% 
+  hc_add_theme(hc_theme_elementary()) 
+  
+  hchart(df$LearningPlatformUsefulnessKaggle, "pie")  %>% 
+    hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Pie chart of Question How usefull is Kaggle as learning platform",align="center") %>% 
+  hc_add_theme(hc_theme_elementary()) 
+  
+  hchart(df$LearningPlatformUsefulnessYouTube, "pie") %>%  
+    hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Pie chart of Question How usefull is Youtube as learning platform",align="center") %>% 
+  hc_add_theme(hc_theme_elementary()) 
   
   
 
