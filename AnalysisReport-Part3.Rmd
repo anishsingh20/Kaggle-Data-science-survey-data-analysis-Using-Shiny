@@ -94,6 +94,8 @@ The above plot was quiet predictable as people with less time learning data scie
 ### 3) Let's now study what participants entered and feel which skills are important for becoming a data scientist?
 
 
+Let's do some data wrangling and transformations.
+
 Making a separate data frame for each variable, for easier understanding.
 ```{r message=FALSE, warning=FALSE}
 #let's make a function to ease things
@@ -107,22 +109,97 @@ aggr<-function(df,var)
     summarise(count=n()) %>%
     arrange(desc(count))
  
- dfname #function returns a summarized dataframe
+    dfname#function returns a summarized dataframe
   
 }
 
+RSkill<-aggr(SurveyDf,JobSkillImportanceR)
+RSkill[1,]<-NA
+SqlSkill<-aggr(SurveyDf,JobSkillImportanceSQL)
+SqlSkill[1,]<-NA
+PythonSkill<-aggr(SurveyDf,JobSkillImportancePython)
+PythonSkill[1,]<-NA
+BigDataSkill<-aggr(SurveyDf,JobSkillImportanceBigData)
+BigDataSkill[1,]<-NA
+StatsSkill<-aggr(SurveyDf,JobSkillImportanceStats)
+StatsSkill[1,]<-NA
+DegreeSkill<-aggr(SurveyDf,JobSkillImportanceDegree)
+DegreeSkill[1,]<-NA
+EnterToolsSkill<-aggr(SurveyDf,JobSkillImportanceEnterpriseTools)
+EnterToolsSkill[1,]<-NA
+MOOCSkill<-aggr(SurveyDf,JobSkillImportanceMOOC)
+MOOCSkill[1,]<-NA
+DataVisSkill<-aggr(SurveyDf,JobSkillImportanceVisualizations)
+DataVisSkill[1,]<-NA
+KaggleRankSkill<-aggr(SurveyDf,JobSkillImportanceKaggleRanking)
+KaggleRankSkill[1,]<-NA
 
-BigDataSkill<-aggr(SurveyDf,JobSkillImportanceR)
+
+hchart(na.omit(RSkill),hcaes(x=JobSkillImportanceR,y=count),type="pie",name="Count") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Piechart of importance of R skill",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
 
 
-dfname<-SurveyDf %>% group_by(JobSkillImportanceBigData) %>% 
-    summarise(count=n()) %>%
-    arrange(desc(count))
+hchart(na.omit(PythonSkill),hcaes(x=JobSkillImportancePython,y=count),type="pie",name="Count") %>%
+hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Piechart of importance of Python skill",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
+
+hchart(na.omit(SqlSkill),hcaes(x=JobSkillImportanceSQL,y=count),type="pie",name="Count") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Piechart of importance of SQL skill",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
+
+hchart(na.omit(BigDataSkill),hcaes(x=JobSkillImportanceBigData,y=count),type="pie",name="Count") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Piechart of importance of Big Data skill",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
+
+hchart(na.omit(StatsSkill),hcaes(x=JobSkillImportanceStats,y=count),type="pie",name="Count") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Piechart of importance of Statistics kill",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
+
+hchart(na.omit(DataVisSkill),hcaes(x=JobSkillImportanceVisualizations,y=count),type="pie",name="Count") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Piechart of importance of Data Viz skill",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
+
+hchart(na.omit(DegreeSkill),hcaes(x=JobSkillImportanceDegree,y=count),type="pie",name="Count") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Piechart of importance of Degree",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
+
+hchart(na.omit(EnterToolsSkill),hcaes(x=JobSkillImportanceEnterpriseTools,y=count),type="pie",name="Count") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Piechart of importance of Enterprise Tools skill",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
+
+hchart(na.omit(MOOCSkill),hcaes(x=JobSkillImportanceMOOC,y=count),type="pie",name="Count") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Piechart of importance of MOOCs",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
+
+hchart(na.omit(KaggleRankSkill),hcaes(x=JobSkillImportanceKaggleRanking,y=count),type="pie",name="Count") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Piechart of importance of Kaggle Rankings",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
+
+
+
+
+
+
+
+
+
 ```
 
+1. We can see from the above plot that the most unnecessary skill amongst all is having a knowledge of Enterprise tools, Degree, Kaggle Rankings and MOOCs. These have higher count of unnecessary skills entered by the participants.
 
 
-
+2. Whereas, Knowledge of Statistics,Python,R and  Big data skills are most necessary and Nice to have skills as per answers entered by the survey participants.
 
 
 
