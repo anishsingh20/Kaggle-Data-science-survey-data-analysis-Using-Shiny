@@ -91,6 +91,36 @@ The above plot was quiet predictable as people with less time learning data scie
 
 ---------------------------
 
+### 3) Let's now study what participants entered and feel which skills are important for becoming a data scientist?
+
+
+Making a separate data frame for each variable, for easier understanding.
+```{r message=FALSE, warning=FALSE}
+#let's make a function to ease things
+#function takes argument as a dataframe and the categorical variable which we want summarize and group
+aggr<-function(df,var) 
+{
+  require(dplyr)
+  var <- enquo(var) #quoting
+  dfname<-df %>% 
+    group_by_at(vars(!!var)) %>%  ## Group by variables selected by name:
+    summarise(count=n()) %>%
+    arrange(desc(count))
+ 
+ dfname #function returns a summarized dataframe
+  
+}
+
+
+BigDataSkill<-aggr(SurveyDf,JobSkillImportanceR)
+
+
+dfname<-SurveyDf %>% group_by(JobSkillImportanceBigData) %>% 
+    summarise(count=n()) %>%
+    arrange(desc(count))
+```
+
+
 
 
 
