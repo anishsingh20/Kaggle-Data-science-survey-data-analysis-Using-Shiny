@@ -294,7 +294,7 @@ hchart(na.omit(MLalgoWork),hcaes(x=WorkAlgorithmsSelect,y=count),type="column",c
 ```
 
 
-> Again as we can see from the above plot, *Regression and Logistic regression and decision trees* lead the pack as the most used learning algorithms which the participants use at work.
+> Again as we can see from the above plot, *Regression,Logistic regression and decision trees* lead the pack as the most used learning algorithms which used at work by participants.
 
 
 
@@ -327,6 +327,33 @@ hchart(na.omit(ToolatWork),hcaes(x=WorkToolsSelect,y=count),type="column",color=
 
 > From the above plot we can see that *Python and R are collectively used* by datascientists the most as entered by the survey participants. Hence Python and R still tops the most used tools at work according to the survey.
 
+
+
+----------------------
+
+
+### Most used ML method at work?
+
+
+```{r}
+MethodatWork<-SurveyDf %>% group_by(WorkMethodsSelect
+) %>%
+  summarise(count=n()) %>%
+  arrange(desc(count)) %>%
+  top_n(20)
+
+MethodatWork[c(1,3),]<-NA
+
+
+hchart(na.omit(MethodatWork),hcaes(x=WorkMethodsSelect
+,y=count),type="column",color="#F14B5B",name="count") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of Most used ML and DS methods used at Work",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
+
+
+
+```
 
 
 
