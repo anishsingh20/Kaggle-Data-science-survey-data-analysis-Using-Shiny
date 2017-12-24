@@ -373,7 +373,11 @@ Employerdf[1,]<-NA
 
 hchart(Employerdf,hcaes(x=EmployerIndustry,y=Freq),type="column",color="lightgreen")
 
-
+employerCountrydf<-SurveyDf %>% group_by(EmployerIndustry,Country) %>%
+  filter(EmployerIndustry %in% Employerdf$EmployerIndustry, Country %in% countryCount$Var1) %>%
+  
+  summarise(count=n()) %>% 
+  arrange(desc(count))
 
 
 table(EmployerMLTime)
