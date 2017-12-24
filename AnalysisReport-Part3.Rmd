@@ -355,5 +355,32 @@ hchart(na.omit(MethodatWork),hcaes(x=WorkMethodsSelect
 
 ```
 
+--------------------------------
+
+
+
+#Let's check for how much time the Emloyer has been using ML?
+
+Let's first check the different tyepes of employers and the industry entered by the participants. 
+This can give us some details about the Employers involvement in Data science and ML.
+
+```{r}
+table(EmployerIndustry)
+
+Employerdf<-as.data.frame(table(EmployerIndustry)) %>% arrange(desc(Freq))
+
+Employerdf[1,]<-NA
+
+hchart(Employerdf,hcaes(x=EmployerIndustry,y=Freq),type="column",color="lightgreen")
+
+
+
+
+table(EmployerMLTime)
+
+hchart(SurveyDf$EmployerMLTime,type="column",color="lightgreen")
+
+
+```
 
 

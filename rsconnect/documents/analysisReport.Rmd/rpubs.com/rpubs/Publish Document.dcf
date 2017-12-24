@@ -1,0 +1,10 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/331725/50351de84573473aaf827c626be57bfc
+bundleId: https://api.rpubs.com/api/v1/document/331725/50351de84573473aaf827c626be57bfc
+url: http://rpubs.com/anish20/331725
+when: 1511854174.22681
