@@ -380,6 +380,17 @@ employerCountrydf<-SurveyDf %>% group_by(EmployerIndustry,Country) %>%
   arrange(desc(count))
 
 
+USEmployerdf<-employerCountrydf  %>%  filter(Country=="United States")
+
+IndiaEmployerdf<-employerCountrydf  %>%  filter(Country=="India")
+
+ChinaEmployerdf
+
+hchart(USEmployerdf,hcaes(x=EmployerIndustry,y=count),type="column")
+
+hchart(IndiaEmployerdf,hcaes(x=EmployerIndustry,y=count),type="column")
+
+
 table(EmployerMLTime)
 
 hchart(SurveyDf$EmployerMLTime,type="column",color="lightgreen")
