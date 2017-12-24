@@ -386,9 +386,15 @@ IndiaEmployerdf<-employerCountrydf  %>%  filter(Country=="India")
 
 ChinaEmployerdf
 
-hchart(USEmployerdf,hcaes(x=EmployerIndustry,y=count),type="column")
+hchart(USEmployerdf,hcaes(x=EmployerIndustry,y=count),type="column",color="#00008b",name="Count") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of of Employer industry of United states survey  participants",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
 
-hchart(IndiaEmployerdf,hcaes(x=EmployerIndustry,y=count),type="column")
+hchart(IndiaEmployerdf,name="Count",hcaes(x=EmployerIndustry,y=count),type="column",color="#33ccff") %>% 
+  hc_exporting(enabled = TRUE) %>%
+  hc_title(text="Barplot of Employer industry of Indian survey participants ",align="center") %>%
+  hc_add_theme(hc_theme_elementary())
 
 
 table(EmployerMLTime)
