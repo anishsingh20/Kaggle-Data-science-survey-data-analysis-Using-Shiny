@@ -10,3 +10,6 @@ Below are the links to the reports generated using Rmarkdown which consists vari
 2).  Part-two-: http://rpubs.com/anish20/kaggleSurvey2
 
 3).  Part-three-: http://rpubs.com/anish20/kaggleSurvey3
+
+
+The app will explain the most salient and most unusual insights from the survey analysis.
