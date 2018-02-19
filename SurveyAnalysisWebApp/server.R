@@ -18,6 +18,8 @@ countryCountApp<-as.data.frame(table(SurveyDf$Country)) %>%  top_n(20) %>%
 colnames(countryCountApp)<-c("Country","Frequency")
 
 
+
+
 server<-function(input,output)
 {
   output$country<-renderHighchart({
@@ -57,9 +59,25 @@ server<-function(input,output)
       arrange(desc(Count))
     
     hchart(na.omit(dfEmployer),type="column",hcaes(x=CurrentEmployerType,y=Count),color="#0E2E93") %>%
-      hc_title(text="Top 15 types of firms where participants from were employed",align="center") %>%
+      hc_title(text="Top 15 types of firms where participants were employed",align="center") %>%
       hc_exporting(enabled=TRUE) %>%
       hc_add_theme(hc_theme_elementary())
+    
+  })
+  
+  #histogram of ages of participants from each country
+  output$age<-renderHighchart({
+    
+    #filtering ages for country
+    dfage<-SurveyDf %>% filter(Country==input$country) %>% 
+      select(Age)
+    
+    
+    hchart(dfage$Age,name="count",color="#FF3300") %>%
+      hc_title(text="Histogram of Ages of the participants grouped by Country",align="center") %>%
+      hc_exporting(enabled=TRUE) %>%
+      hc_add_theme(hc_theme_elementary())
+      
     
   })
 }

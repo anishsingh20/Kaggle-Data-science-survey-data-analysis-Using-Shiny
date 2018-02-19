@@ -68,13 +68,9 @@ dashboardPage(
                   
                 ) ,
                 
-                br() ,
                 
                 
                 fluidRow(
-                  
-                  
-                  
                   
                   column(12, 
                          
@@ -92,14 +88,23 @@ dashboardPage(
                           width=12 
                          ) ,
                          
-                         
                          #chart for type of employer of participants country-wise
                          box(
                            
                            highchartOutput("employer"),
                            width=12
                            
-                         ) 
+                         ) ,
+                         
+                         #chart for historgram of age of participants country-wise
+                         box(
+                           
+                           highchartOutput("age"),
+                           width=12
+                           
+                         )
+                         
+                         
                          
                       )#end column 1
                     
