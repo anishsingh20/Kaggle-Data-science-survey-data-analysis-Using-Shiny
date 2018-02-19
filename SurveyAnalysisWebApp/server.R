@@ -144,4 +144,27 @@ server<-function(input,output)
         hc_add_theme(hc_theme_elementary()) 
       
     })
+    
+    
+    
+    #tools used at work place
+    output$ToolsWork<-renderHighchart({
+      
+      WorkTools <- SurveyDf %>%  filter(CurrentJobTitleSelect==input$job2,EmployerIndustry==input$industry2) %>% 
+        group_by(WorkToolsSelect) %>% 
+        select(WorkToolsSelect) %>%
+        summarise(Count = n()) %>%
+        arrange(desc(Count)) %>% 
+        top_n(15)
+      
+        WorkTools[1,1]<-NA
+      
+      hchart(na.omit(WorkTools),hcaes(x=WorkToolsSelect,y=Count),type="column",name="Count",color="#03F50A") %>%  
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Tools used by different Job position at work ",align="center") %>%
+        hc_add_theme(hc_theme_elementary()) 
+      
+      
+      
+    })
 }

@@ -187,8 +187,36 @@ dashboardPage(
                           
                           highchartOutput("JobTools"), 
                           width=12 
-                        ) 
+                        ) ,
                         
+                        br(),
+                        
+                        h3("Tools used at Work Place",align="center"),
+                        
+                        br(),
+                        
+                        #job title select
+                        box(
+                          
+                          selectInput("job2",label="Select Job title",
+                                      choices=jobs[,1]), 
+                          
+                          width=6),
+                        
+                        #industry
+                        box(
+                          
+                          selectInput("industry2",label="Select Industry",
+                                      choices=TopIndustry[,1]), 
+                          
+                          width=6) ,
+                        
+                        #plot for tools used at work 
+                        box(
+                          
+                          highchartOutput("ToolsWork"), 
+                          width=12 
+                        ) 
                          
                          #chart for type of employer of participants country-wise
                          #
