@@ -164,7 +164,31 @@ dashboardPage(
                            
                            highchartOutput("industryTools"), 
                            width=12 
-                         ) 
+                         ) ,
+                        
+                        #job title select
+                        box(
+                          
+                          selectInput("job",label="Select Job title",
+                                      choices=jobs[,1]), 
+                          
+                          width=6),
+                        
+                        #industry
+                        box(
+                          
+                          selectInput("industry1",label="Select Industry",
+                                      choices=TopIndustry[,1]), 
+                          
+                          width=6) ,
+                        
+                        #plot for tools and job positions
+                        box(
+                          
+                          highchartOutput("JobTools"), 
+                          width=12 
+                        ) 
+                        
                          
                          #chart for type of employer of participants country-wise
                          #

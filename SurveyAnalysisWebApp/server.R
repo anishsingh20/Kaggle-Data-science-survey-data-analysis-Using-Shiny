@@ -116,7 +116,7 @@ server<-function(input,output)
       
      
       
-      industrydf <- SurveyDf %>% select(EmployerIndustry,MLToolNextYearSelect) %>% 
+      industrydf <- SurveyDf %>% select(EmployerIndustry,MLToolNextYearSelect,Country) %>% 
         filter(EmployerIndustry==input$industry,Country==input$country1) %>% 
         group_by(MLToolNextYearSelect) %>% 
         summarise(Count = n()) %>% 
@@ -127,6 +127,21 @@ server<-function(input,output)
         hc_title(text="Tools used in different Industries of each country ",align="center") %>%
         hc_add_theme(hc_theme_elementary()) 
       
+      
+    })
+    
+    output$JobTools<-renderHighchart({
+      
+      JobTools <- SurveyDf %>% select(EmployerIndustry,MLToolNextYearSelect,CurrentJobTitleSelect) %>% 
+        filter(CurrentJobTitleSelect==input$job,EmployerIndustry==input$industry1) %>% 
+        group_by(MLToolNextYearSelect) %>% 
+        summarise(Count = n()) %>% 
+        arrange(desc(Count))
+      
+      hchart(JobTools,hcaes(x=MLToolNextYearSelect,y=Count),type="column",name="Count",color=" #264CD9") %>%  
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Tools used by different Job position in industries ",align="center") %>%
+        hc_add_theme(hc_theme_elementary()) 
       
     })
 }
