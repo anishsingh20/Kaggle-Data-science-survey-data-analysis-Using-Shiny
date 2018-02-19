@@ -1,4 +1,4 @@
-require(plotly)
+require(highcharter)
 require(dplyr)
 require(tidyr)
 require(shiny)
@@ -52,15 +52,28 @@ dashboardPage(
                 h3("Country wise analysis",align="center") ,
                 br(),
                 
+                h4("Histogram of country",align="center"),
+                
+                #chart for country histogram
+                box(
+                  
+                  highchartOutput("country"),
+                  width=12
+                  
+                ) ,
+                
                 fluidRow(
+                  
+                  
+                  
                   
                   column(12, 
                          
                          box(
                            
-                           selectInput("indicator",label="Select Economic Indicator",
-                                       choices=indicators[,1]), 
-                           width=12
+                           selectInput("country",label="Most participants from countries",
+                                       choices=c("India","United States")), 
+                           width=6
                          )  #end box1
                          
                       )#end column 1
