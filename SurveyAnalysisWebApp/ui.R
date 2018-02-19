@@ -27,12 +27,16 @@ TopIndustry<-na.omit(TopIndustry)
 
 
 
-
+#job titles
+jobs<-as.data.frame(table(CurrentJobTitleSelect)) %>% arrange(desc(Freq))
+jobs[1,1]<-NA
+jobs<-na.omit(jobs)
 
 
 
 
 dashboardPage(
+  skin="black",
     dashboardHeader(title="Kaggle Survey data analysis app") ,
     
     #dashboard sidebar
@@ -49,7 +53,8 @@ dashboardPage(
     
     #dashboard body
     dashboardBody(
-      skin="black",
+      
+      
       #adding custom-css
       tags$head(
         tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
@@ -143,8 +148,16 @@ dashboardPage(
                            selectInput("industry",label="Select Industry",
                                        choices=TopIndustry[,1]), 
                            
-                           width=12
+                           width=6
                          ),
+                        #country select
+                        box(
+                          
+                          selectInput("country1",label="Select Country",
+                                      choices=countryCountApp[,1]), 
+                          
+                          width=6
+                        ),
                          
                          #box for plots
                          box(
@@ -185,3 +198,5 @@ dashboardPage(
     )#end dashboard body
     
 )#end dashboard page
+
+

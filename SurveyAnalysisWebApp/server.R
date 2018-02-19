@@ -114,15 +114,17 @@ server<-function(input,output)
     
     output$industryTools<-renderHighchart({
       
+     
+      
       industrydf <- SurveyDf %>% select(EmployerIndustry,MLToolNextYearSelect) %>% 
-        filter(EmployerIndustry==input$industry) %>% 
+        filter(EmployerIndustry==input$industry,Country==input$country1) %>% 
         group_by(MLToolNextYearSelect) %>% 
         summarise(Count = n()) %>% 
         arrange(desc(Count))
       
-      hchart(industrydf,hcaes(x=MLToolNextYearSelect,y=Count),type="column",name="Count",color="#9B6ED8") %>%  
+      hchart(industrydf,hcaes(x=MLToolNextYearSelect,y=Count),type="column",name="Count",color=" #539AAC") %>%  
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Tools used in different Industries in each country",align="center") %>%
+        hc_title(text="Tools used in different Industries of each country ",align="center") %>%
         hc_add_theme(hc_theme_elementary()) 
       
       
