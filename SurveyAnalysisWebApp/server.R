@@ -20,6 +20,19 @@ colnames(countryCountApp)<-c("Country","Frequency")
 
 
 
+#tools df
+toolApp<-as.data.frame(table(MLToolNextYearSelect)) %>% arrange(desc(Freq))
+#let's remove missing value
+toolApp[1,]<-NA
+toolApp<-na.omit(tooldf)
+names(toolApp)<-c("Tool","Count")
+
+
+
+
+
+
+
 server<-function(input,output)
 {
   output$country<-renderHighchart({
@@ -80,4 +93,26 @@ server<-function(input,output)
       
     
   })
+  
+    output$tools<-renderHighchart({
+      
+      hchart(toolApp,hcaes(x=Tool,y=Count),type="column",name="Count",color="#80661A") %>%  
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Barplot of tools used by participants",align="center") %>%
+        hc_add_theme(hc_theme_elementary()) 
+      
+    })
+    
+    
+    
+    output$industryTools<-renderHighchart({
+      
+      industrydf<-SurveyDf %>% filter(Country==input$country,EmployerIndustry==input$industry) %>% 
+        group_by(MLToolNextYearSelect) %>% 
+        summarise(Count = n()) %>% 
+        arrange(desc(Count))
+      
+      
+      
+    })
 }

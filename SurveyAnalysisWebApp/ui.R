@@ -16,8 +16,20 @@ attach(SurveyDf)
 #country count data frame in descending order-top 20
 countryCountApp<-as.data.frame(table(SurveyDf$Country)) %>%  top_n(20) %>% 
   arrange(desc(Freq))
-
 colnames(countryCountApp)<-c("Country","Frequency")
+
+
+#top work industries where participants work
+TopIndustry<-as.data.frame(table(SurveyDf$EmployerIndustry)) %>%   
+  arrange(desc(Freq))
+TopIndustry[1,1]<-NA
+TopIndustry<-na.omit(TopIndustry)
+
+
+
+
+
+
 
 
 dashboardPage(
@@ -37,7 +49,7 @@ dashboardPage(
     
     #dashboard body
     dashboardBody(
-      skin="white",
+      skin="black",
       #adding custom-css
       tags$head(
         tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
@@ -56,9 +68,6 @@ dashboardPage(
         #tab 2-country-wise analysis
         tabItem(tabName ="tab2",
                 h3("Country wise analysis",align="center") ,
-                br(),
-                
-                h4("Histogram of country",align="center"),
                 
                 #chart for country histogram
                 box(
@@ -114,7 +123,45 @@ dashboardPage(
           
         #tab3    
         tabItem(tabName ="tab3",
-                h3("Analyzing the preferred Tools used",align="center")
+                h3("Analyzing the preferred Tools used",align="center"),
+                
+                #most used tools by participants
+                box(
+                  
+                  highchartOutput("tools"),
+                  width=12
+                  
+                ) ,
+                
+                fluidRow(
+                  
+                  column(12, 
+                         
+                         box(
+                           
+                           selectInput("country",label="Select Country",
+                                       choices=countryCountApp[,1]), 
+                           selectInput("industry",lable="Select Industry",
+                                       choices=TopIndustry[,1]) ,
+                           width=12
+                         ),  #end box1
+                         
+                         #box for plots
+                         box(
+                           
+                           highchartOutput("industryTools"), 
+                           width=12 
+                         ) 
+                         
+                         #chart for type of employer of participants country-wise
+                         #
+                         
+                         
+                         
+                  )#end column 1
+                  
+                )# end fluid Row
+                
                 
         ),
         
