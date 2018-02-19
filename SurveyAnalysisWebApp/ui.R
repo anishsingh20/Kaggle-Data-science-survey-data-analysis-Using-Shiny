@@ -137,14 +137,14 @@ dashboardPage(
                   
                   column(12, 
                          
+                        #type of industry and its preferred tools
                          box(
                            
-                           selectInput("country",label="Select Country",
-                                       choices=countryCountApp[,1]), 
-                           selectInput("industry",lable="Select Industry",
-                                       choices=TopIndustry[,1]) ,
+                           selectInput("industry",label="Select Industry",
+                                       choices=TopIndustry[,1]), 
+                           
                            width=12
-                         ),  #end box1
+                         ),
                          
                          #box for plots
                          box(
