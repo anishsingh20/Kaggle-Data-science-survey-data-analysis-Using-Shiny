@@ -42,16 +42,52 @@ dashboardPage(
         #tab1 main menu
         tabItem(tabName="tab1",
                 
-                h2("Kaggle Data science data analysis App",align="center",style="margin-top:-5px;")
+                h2("Kaggle Data science data analysis App",align="center",style="margin-top:-5px;"),
+                br()
                 
                 ),
         
         #tab 2-country-wise analysis
         tabItem(tabName ="tab2",
-                h3("Country wise analysis",align="center")
+                h3("Country wise analysis",align="center") ,
+                br(),
                 
-                )#end tab2
+                fluidRow(
+                  
+                  column(12, 
+                         
+                         box(
+                           
+                           selectInput("indicator",label="Select Economic Indicator",
+                                       choices=indicators[,1]), 
+                           width=12
+                         )  #end box1
+                         
+                      )#end column 1
+                    
+                    )# end fluid Row
                 
+                  ),#end tab2
+          
+        #tab3    
+        tabItem(tabName ="tab3",
+                h3("Analyzing the preferred Tools used",align="center")
+                
+        ),
+        
+        #tab4
+        tabItem(tabName ="tab4",
+                h3("Analyzing the preferred ML techniques used",align="center")
+                
+        ),
+        
+        #tab5
+        tabItem(tabName ="tab5",
+                h3("What is used at work?",align="center")
+                
+        )
+        
+        
                 
         )#end tabitems 
                
