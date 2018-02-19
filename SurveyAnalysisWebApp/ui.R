@@ -37,7 +37,7 @@ jobs<-na.omit(jobs)
 
 dashboardPage(
   skin="black",
-    dashboardHeader(title="Kaggle Survey data analysis app") ,
+    dashboardHeader(title="Kaggle Survey Data analysis") ,
     
     #dashboard sidebar
     dashboardSidebar(
@@ -65,7 +65,7 @@ dashboardPage(
         #tab1 main menu
         tabItem(tabName="tab1",
                 
-                h2("Kaggle Data science data analysis App",align="center",style="margin-top:-5px;"),
+                h2("Kaggle Data science survey 2017 data analysis App",align="center",style="margin-top:-5px;"),
                 br()
                 
                 ),
