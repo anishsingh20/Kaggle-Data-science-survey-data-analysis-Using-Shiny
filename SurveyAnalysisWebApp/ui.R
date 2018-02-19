@@ -13,6 +13,11 @@ SurveyDf<-fread("multipleChoiceResponses.csv") #for faster data reading
 attach(SurveyDf)
 
 
+#country count data frame in descending order-top 20
+countryCountApp<-as.data.frame(table(SurveyDf$Country)) %>%  top_n(20) %>% 
+  arrange(desc(Freq))
+
+colnames(countryCountApp)<-c("Country","Frequency")
 
 
 dashboardPage(
@@ -32,6 +37,7 @@ dashboardPage(
     
     #dashboard body
     dashboardBody(
+      skin="white",
       #adding custom-css
       tags$head(
         tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
@@ -62,6 +68,9 @@ dashboardPage(
                   
                 ) ,
                 
+                br() ,
+                
+                
                 fluidRow(
                   
                   
@@ -71,10 +80,26 @@ dashboardPage(
                          
                          box(
                            
-                           selectInput("country",label="Most participants from countries",
-                                       choices=c("India","United States")), 
-                           width=6
-                         )  #end box1
+                           selectInput("country",label="Select Country",
+                                       choices=countryCountApp[,1]), 
+                           width=12
+                         ),  #end box1
+                         
+                         #box for plots
+                         box(
+                           
+                          highchartOutput("jobTitle"), 
+                          width=12 
+                         ) ,
+                         
+                         
+                         #chart for type of employer of participants country-wise
+                         box(
+                           
+                           highchartOutput("employer"),
+                           width=12
+                           
+                         ) 
                          
                       )#end column 1
                     
