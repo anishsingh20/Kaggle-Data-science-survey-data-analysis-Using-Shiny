@@ -1,33 +1,61 @@
-#
-# This is the user-interface definition of a Shiny web application. You can
-# run the application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-# 
-#    http://shiny.rstudio.com/
-#
+require(plotly)
+require(dplyr)
+require(tidyr)
+require(shiny)
+require(shinydashboard)
+require(data.table)
 
-library(shiny)
+#UI of the application
 
-# Define UI for application that draws a histogram
-shinyUI(fluidPage(
-  
-  # Application title
-  titlePanel("Old Faithful Geyser Data"),
-  
-  # Sidebar with a slider input for number of bins 
-  sidebarLayout(
-    sidebarPanel(
-       sliderInput("bins",
-                   "Number of bins:",
-                   min = 1,
-                   max = 50,
-                   value = 30)
-    ),
+#reading the dataset
+SurveyDf<-fread("multipleChoiceResponses.csv") #for faster data reading
+
+attach(SurveyDf)
+
+
+
+
+dashboardPage(
+    dashboardHeader(title="Kaggle Survey data analysis app") ,
     
-    # Show a plot of the generated distribution
-    mainPanel(
-       plotOutput("distPlot")
-    )
-  )
-))
+    #dashboard sidebar
+    dashboardSidebar(
+      sidebarMenu(
+        menuItem("Main Menu", tabName = "tab1",icon=icon("dashboard")) ,
+        menuItem("Country-Wise analysis", tabName = "tab2"),
+        menuItem("Preferred Tools", tabName = "tab3"),
+        menuItem("Preferred ML methods", tabName = "tab4"),
+        menuItem("Work", tabName = "tab5")
+        
+      )
+    ) ,
+    
+    #dashboard body
+    dashboardBody(
+      #adding custom-css
+      tags$head(
+        tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
+      ),
+      
+      tabItems(  
+        
+        #tab1 main menu
+        tabItem(tabName="tab1",
+                
+                h2("Kaggle Data science data analysis App",align="center",style="margin-top:-5px;")
+                
+                ),
+        
+        #tab 2-country-wise analysis
+        tabItem(tabName ="tab2",
+                h3("Country wise analysis",align="center")
+                
+                )#end tab2
+                
+                
+        )#end tabitems 
+               
+      
+    )#end dashboard body
+    
+)#end dashboard page
