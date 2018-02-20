@@ -143,6 +143,9 @@ dashboardPage(
                   column(12, 
                          
                         #type of industry and its preferred tools
+                        h3("Tools used in a specific Industry of a country",align="center") ,
+                        br(),
+                        
                          box(
                            
                            selectInput("industry",label="Select Industry",
@@ -164,7 +167,11 @@ dashboardPage(
                            
                            highchartOutput("industryTools"), 
                            width=12 
-                         ) ,
+                         )
+                        ,
+                        br(),
+                        
+                        h3("Tools used by specific Job positions in a specific Industry",align="center") ,
                         
                         #job title select
                         box(

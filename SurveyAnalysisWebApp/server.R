@@ -59,8 +59,10 @@ server<-function(input,output)
       select(CurrentJobTitleSelect) %>% 
       summarise(Count=n()) %>% 
       arrange(desc(Count)) 
+    
+    dfJob[1,1]<-NA
       
-      hchart(dfJob,hcaes(x=CurrentJobTitleSelect,y=Count),name="Count",color="  #262626",type="column") %>%
+      hchart(na.omit(dfJob),hcaes(x=CurrentJobTitleSelect,y=Count),name="Count",color="  #262626",type="column") %>%
       hc_title(text="Barplot of Current Job titles of the participants from country",align="center") %>%
       hc_exporting(enabled=TRUE) %>%
       hc_add_theme(hc_theme_elementary())
@@ -77,6 +79,8 @@ server<-function(input,output)
       summarise(Count=n()) %>% 
       top_n(15) %>% 
       arrange(desc(Count))
+    
+    dfEmployer[1,1]<-NA
     
     hchart(na.omit(dfEmployer),type="column",hcaes(x=CurrentEmployerType,y=Count),color="#0E2E93") %>%
       hc_title(text="Top 15 types of firms where participants were employed",align="center") %>%
@@ -122,7 +126,9 @@ server<-function(input,output)
         summarise(Count = n()) %>% 
         arrange(desc(Count))
       
-      hchart(industrydf,hcaes(x=MLToolNextYearSelect,y=Count),type="column",name="Count",color=" #539AAC") %>%  
+      industrydf[1,1]<-NA
+      
+      hchart(na.omit(industrydf),hcaes(x=MLToolNextYearSelect,y=Count),type="column",name="Count",color=" #539AAC") %>%  
         hc_exporting(enabled = TRUE) %>%
         hc_title(text="Tools used in different Industries of each country ",align="center") %>%
         hc_add_theme(hc_theme_elementary()) 
@@ -138,7 +144,9 @@ server<-function(input,output)
         summarise(Count = n()) %>% 
         arrange(desc(Count))
       
-      hchart(JobTools,hcaes(x=MLToolNextYearSelect,y=Count),type="column",name="Count",color=" #264CD9") %>%  
+      
+      
+      hchart(na.omit(JobTools),hcaes(x=MLToolNextYearSelect,y=Count),type="column",name="Count",color=" #264CD9") %>%  
         hc_exporting(enabled = TRUE) %>%
         hc_title(text="Tools used by different Job position in industries ",align="center") %>%
         hc_add_theme(hc_theme_elementary()) 
