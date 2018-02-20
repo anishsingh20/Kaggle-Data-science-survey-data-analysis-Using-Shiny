@@ -230,4 +230,22 @@ server<-function(input,output)
         hc_add_theme(hc_theme_elementary()) 
       
     })
+    
+    #competent ML methods
+    output$EasyML<-renderHighchart({
+      
+      MLdfeasy <- SurveyDf %>% select(EmployerIndustry,MLTechniquesSelect,CurrentJobTitleSelect) %>% 
+        filter(CurrentJobTitleSelect==input$jobs4, EmployerIndustry==input$industry5) %>% 
+        group_by(MLTechniquesSelect) %>% 
+        summarise(Count = n()) %>% 
+        arrange(desc(Count)) %>% 
+        top_n(10)
+      
+      hchart(na.omit(MLdfeasy),hcaes(x=MLTechniquesSelect,y=Count),type="column",name="Count",color="#574C9B") %>%  
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="ML techniques in which participnts consider themselves most competent",align="center") %>%
+        hc_add_theme(hc_theme_elementary()) 
+      
+      
+    })
 }

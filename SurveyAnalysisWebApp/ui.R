@@ -307,6 +307,32 @@ dashboardPage(
                            
                            highchartOutput("JobML"), 
                            width=12 
+                         ) ,
+                         
+                         br(),
+                         
+                         h3("Techniques in which participants consider themselves competent",align="center"),
+                         #box for ML competent plot
+                         box(
+                           
+                           selectInput("jobs4",label="Select Job title",
+                                       choices=jobs[,1]), 
+                           
+                           width=6
+                         ),
+                         
+                         #country select
+                         box(
+                           
+                           selectInput("industry5",label="Select Industry",
+                                       choices=TopIndustry[,1]), 
+                           
+                           width=6
+                         ),
+                         box(
+                           
+                           highchartOutput("EasyML"), 
+                           width=12 
                          )
                   ) #end column
                   
