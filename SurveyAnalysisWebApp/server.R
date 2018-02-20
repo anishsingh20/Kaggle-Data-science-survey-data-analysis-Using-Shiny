@@ -29,6 +29,12 @@ toolApp<-na.omit(tooldf)
 names(toolApp)<-c("Tool","Count")
 
 
+datadf<-SurveyDf %>% select(EmployerIndustry,WorkDataTypeSelect,CurrentJobTitleSelect) %>% 
+  filter(EmployerIndustry=="Technology",CurrentJobTitleSelect=="Data Scientist") %>% 
+  group_by(WorkDataTypeSelect) %>% 
+  summarise(Count = n()) %>% 
+  mutate(Percentage = round((Count/sum(Count))*100,digits = 2)) %>% 
+  arrange(desc(Percentage))
 
 
 #Skill importance data frame 
@@ -283,9 +289,10 @@ server<-function(input,output)
         filter(EmployerIndustry==input$industry6,CurrentJobTitleSelect==input$job6) %>% 
         group_by(WorkDataTypeSelect) %>% 
         summarise(Count = n()) %>% 
-        arrange(desc(Count))
+        mutate(Percentage = round((Count/sum(Count))*100,digits = 2)) %>% 
+        arrange(desc(Percentage))
       
-      hchart(datadf,hcaes(x=WorkDataTypeSelect,y=Count),type="column",name="Count") %>% 
+      hchart(datadf,hcaes(x=WorkDataTypeSelect,y=Percentage),type="column",name="Percentage % ") %>% 
         hc_exporting(enabled = TRUE) %>%
         hc_title(text="Bar plot of type of data used",align="center") %>%
         hc_add_theme(hc_theme_ffx())
