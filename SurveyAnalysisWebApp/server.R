@@ -271,7 +271,7 @@ server<-function(input,output)
       hchart(skilldf,hcaes(x=importance,y=count),type="funnel",name="Count",color=colors) %>% 
         hc_exporting(enabled = TRUE) %>%
         hc_title(text="Funnel Chart of importance of skill",align="center") %>%
-        hc_add_theme(hc_theme_elementary())
+        hc_add_theme(hc_theme_ffx())
       
     })
 }
