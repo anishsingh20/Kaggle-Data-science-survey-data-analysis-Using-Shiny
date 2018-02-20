@@ -105,6 +105,8 @@ server<-function(input,output)
     
   })
   
+  
+  #tab-3
     output$tools<-renderHighchart({
       
       hchart(toolApp,hcaes(x=Tool,y=Count),type="column",name="Count",color="#80661A") %>%  
@@ -114,8 +116,7 @@ server<-function(input,output)
       
     })
     
-    
-    
+   
     output$industryTools<-renderHighchart({
       
      
@@ -130,7 +131,7 @@ server<-function(input,output)
       
       hchart(na.omit(industrydf),hcaes(x=MLToolNextYearSelect,y=Count),type="column",name="Count",color=" #539AAC") %>%  
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Tools used in different Industries of each country ",align="center") %>%
+        hc_title(text="Tools most excited about learning next year in different industries and country ",align="center") %>%
         hc_add_theme(hc_theme_elementary()) 
       
       
@@ -148,7 +149,7 @@ server<-function(input,output)
       
       hchart(na.omit(JobTools),hcaes(x=MLToolNextYearSelect,y=Count),type="column",name="Count",color=" #264CD9") %>%  
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Tools used by different Job position in industries ",align="center") %>%
+        hc_title(text="Tools most excited about learning in next year by different Job positions in an Industry ",align="center") %>%
         hc_add_theme(hc_theme_elementary()) 
       
     })
@@ -174,6 +175,43 @@ server<-function(input,output)
         hc_add_theme(hc_theme_elementary()) 
       
       
+      
+    })
+    
+    
+    #tab-4-ML techniques
+    output$ML<-renderHighchart({
+      
+      dfML<-SurveyDf %>% group_by(MLMethodNextYearSelect) %>% 
+        summarise(Count = n()) %>% 
+        arrange(desc(Count))
+      
+      dfML[1,1]<-NA
+      names(dfML)<-c("Method","Count")
+      
+      hchart(na.omit(dfML),hcaes(x=Method,y=Count),type="column",name="Count",color="#82BBAA") %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Barplot of ML Method used by participants",align="center") %>%
+        hc_add_theme(hc_theme_elementary()) 
+      })
+    
+    
+    #indstry and ML
+    output$industryML<-renderHighchart({
+      
+      industryMLdf <- SurveyDf %>% select(EmployerIndustry,MLMethodNextYearSelect,Country) %>% 
+        filter(EmployerIndustry==input$industry3,Country==input$country3) %>% 
+        group_by(MLMethodNextYearSelect) %>% 
+        summarise(Count = n()) %>% 
+        arrange(desc(Count))
+      
+      #industryd[1,1]<-NA
+      
+      hchart(na.omit(industryMLdf),hcaes(x=MLMethodNextYearSelect,y=Count),type="column",name="Count",color=" #539AAC") %>%  
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="ML methods most excited about learning next year",align="center") %>%
+        hc_add_theme(hc_theme_elementary()) 
+        
       
     })
 }

@@ -128,7 +128,8 @@ dashboardPage(
           
         #tab3    
         tabItem(tabName ="tab3",
-                h3("Analyzing the preferred Tools used",align="center"),
+                h3("Which tools are the participants most excited about learning in the next year?"
+,align="center"),
                 
                 #most used tools by participants
                 box(
@@ -143,7 +144,7 @@ dashboardPage(
                   column(12, 
                          
                         #type of industry and its preferred tools
-                        h3("Tools used in a specific Industry of a country",align="center") ,
+                        h3("Tools most excited about learning in next year in different Industries of a country",align="center") ,
                         br(),
                         
                          box(
@@ -171,7 +172,7 @@ dashboardPage(
                         ,
                         br(),
                         
-                        h3("Tools used by specific Job positions in a specific Industry",align="center") ,
+                        h3("Tools most excited about learning in next year by different Job positions in Industry",align="center") ,
                         
                         #job title select
                         box(
@@ -198,7 +199,7 @@ dashboardPage(
                         
                         br(),
                         
-                        h3("Tools used at Work Place",align="center"),
+                        h3("Tools most used at Work Place",align="center"),
                         
                         br(),
                         
@@ -239,9 +240,51 @@ dashboardPage(
         
         #tab4
         tabItem(tabName ="tab4",
-                h3("Analyzing the preferred ML techniques used",align="center")
+                h3("Which ML techniques are the participants most excited about learning?",align="center") ,
+                br(),
+                box(
+                  
+                  highchartOutput("ML"),
+                  width=12
+                  
+                ) ,
                 
-        ),
+                fluidRow(
+                  
+                  column(12, 
+                         
+                         #type of industry and its preferred tools
+                         h3("ML Techniques most excited about learning in next year in different Industries of a country",align="center") ,
+                         br(),
+                         
+                         box(
+                           
+                           selectInput("industry3",label="Select Industry",
+                                       choices=TopIndustry[,1]), 
+                           
+                           width=6
+                         ),
+                         #country select
+                         box(
+                           
+                           selectInput("country3",label="Select Country",
+                                       choices=countryCountApp[,1]), 
+                           
+                           width=6
+                         ),
+                         
+                         #box for plots
+                         box(
+                           
+                           highchartOutput("industryML"), 
+                           width=12 
+                         )
+                  ) #end column
+                  
+                )#end fluidRow
+                
+              ), #end tabItem
+
         
         #tab5
         tabItem(tabName ="tab5",
