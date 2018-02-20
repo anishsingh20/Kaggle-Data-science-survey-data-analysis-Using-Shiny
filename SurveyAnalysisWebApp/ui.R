@@ -34,6 +34,23 @@ jobs<-na.omit(jobs)
 
 
 
+#tidying the data frame
+
+SkillImportance<-SurveyDf %>% select(JobSkillImportanceR,JobSkillImportanceKaggleRanking,
+  JobSkillImportanceMOOC,JobSkillImportancePython,
+  JobSkillImportanceEnterpriseTools,JobSkillImportanceSQL,JobSkillImportanceStats,
+  JobSkillImportanceVisualizations, 
+  JobSkillImportanceBigData,JobSkillImportanceDegree) %>% 
+  gather(key="Skill",value="importance")
+
+SkillImportance<-SkillImportance %>% group_by(Skill,importance) %>% 
+  summarise(count=n()) %>% 
+  arrange(desc(count))
+
+SkillImportance[1:10,]<-NA
+
+SkillImportance<-na.omit(SkillImportance)
+
 
 dashboardPage(
   skin="black",
@@ -42,13 +59,16 @@ dashboardPage(
     #dashboard sidebar
     dashboardSidebar(
       sidebarMenu(
+        
         menuItem("Main Menu", tabName = "tab1",icon=icon("dashboard")) ,
         menuItem("Country-Wise analysis", tabName = "tab2"),
         menuItem("Preferred Tools", tabName = "tab3"),
         menuItem("Preferred ML methods", tabName = "tab4"),
-        menuItem("Work", tabName = "tab5")
+        menuItem("Skill importance", tabName = "tab5"),
+        menuItem("Work", tabName = "tab6")
         
       )
+      
     ) ,
     
     #dashboard body
@@ -340,12 +360,48 @@ dashboardPage(
                 
               ), #end tabItem
 
-        
-        #tab5
-        tabItem(tabName ="tab5",
-                h3("What is used at work?",align="center")
+  
+          #tab 5 -skills importance
+          tabItem(
+            tabName ="tab5",
+                  h3("Which Skills are importanct for getting a data science job",align="center"),
+                  br(),
+            
+              fluidRow(
                 
-        )
+                column(12,
+                       
+                  box(
+                    selectInput("skill",label="Select type of skill",
+                                choices=unique(SkillImportance[,1])) ,
+                    width=12
+                    
+                  ),#end box
+                  
+                  #pie chart of skill importance
+                  box(
+                    
+                    highchartOutput("Skillimportance"), 
+                    width=12 
+                  )#end box
+                  
+                )#end column
+                
+              )#end fluid row
+                  
+          ) ,#end tab Item 5
+
+
+          #tab 6
+          tabItem(
+                  tabName ="tab6",
+                  h3("What is used at work?",align="center")
+                  
+                  
+          )
+
+
+        
         
         
                 

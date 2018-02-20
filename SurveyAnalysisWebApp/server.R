@@ -31,10 +31,23 @@ names(toolApp)<-c("Tool","Count")
 
 
 
+#Skill importance data frame 
+#tidying the data frame
 
+SkillImportance<-SurveyDf %>% select(JobSkillImportanceR,JobSkillImportanceKaggleRanking,
+                                     JobSkillImportanceMOOC,JobSkillImportancePython,
+                                     JobSkillImportanceEnterpriseTools,JobSkillImportanceSQL,JobSkillImportanceStats,
+                                     JobSkillImportanceVisualizations, 
+                                     JobSkillImportanceBigData,JobSkillImportanceDegree) %>% 
+  gather(key="Skill",value="importance")
 
+SkillImportance<-SkillImportance %>% group_by(Skill,importance) %>% 
+  summarise(count=n()) %>%
+  arrange(desc(count))
 
+SkillImportance[1:10,]<-NA
 
+SkillImportance<-na.omit(SkillImportance)
 
 
 
@@ -246,6 +259,19 @@ server<-function(input,output)
         hc_title(text="ML techniques in which participnts consider themselves most competent",align="center") %>%
         hc_add_theme(hc_theme_elementary()) 
       
+      
+    })
+    
+    output$Skillimportance<-renderHighchart({
+      
+      skilldf<-SkillImportance %>% filter(Skill %in% input$skill)
+      
+      colors<-c("red", "blue", "green")
+        
+      hchart(skilldf,hcaes(x=importance,y=count),type="funnel",name="Count",color=colors) %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Funnel Chart of importance of skill",align="center") %>%
+        hc_add_theme(hc_theme_elementary())
       
     })
 }
