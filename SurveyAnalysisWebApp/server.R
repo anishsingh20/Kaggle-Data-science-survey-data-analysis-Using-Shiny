@@ -207,11 +207,27 @@ server<-function(input,output)
       
       #industryd[1,1]<-NA
       
-      hchart(na.omit(industryMLdf),hcaes(x=MLMethodNextYearSelect,y=Count),type="column",name="Count",color=" #539AAC") %>%  
+      hchart(na.omit(industryMLdf),hcaes(x=MLMethodNextYearSelect,y=Count),type="column",name="Count",color=" #3123B5") %>%  
         hc_exporting(enabled = TRUE) %>%
         hc_title(text="ML methods most excited about learning next year",align="center") %>%
         hc_add_theme(hc_theme_elementary()) 
         
+      
+    })
+    
+    
+    output$JobML<-renderHighchart({
+      
+      JobMLdf <- SurveyDf %>% select(EmployerIndustry,MLMethodNextYearSelect,CurrentJobTitleSelect) %>% 
+        filter(CurrentJobTitleSelect==input$jobs3, EmployerIndustry==input$industry4) %>% 
+        group_by(MLMethodNextYearSelect) %>% 
+        summarise(Count = n()) %>% 
+        arrange(desc(Count))
+      
+      hchart(na.omit(JobMLdf),hcaes(x=MLMethodNextYearSelect,y=Count),type="column",name="Count",color="#BD1491") %>%  
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="ML methods most excited about learning next year by different Jobs titles",align="center") %>%
+        hc_add_theme(hc_theme_elementary()) 
       
     })
 }

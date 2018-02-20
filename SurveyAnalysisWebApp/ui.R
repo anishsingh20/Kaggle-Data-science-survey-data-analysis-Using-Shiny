@@ -254,7 +254,7 @@ dashboardPage(
                   column(12, 
                          
                          #type of industry and its preferred tools
-                         h3("ML Techniques most excited about learning in next year in different Industries of a country",align="center") ,
+                         h3("ML Techniques most excited about learning in next year in different Industries",align="center") ,
                          br(),
                          
                          box(
@@ -277,6 +277,35 @@ dashboardPage(
                          box(
                            
                            highchartOutput("industryML"), 
+                           width=12 
+                         ),
+                         br(),
+                         
+                         h3("ML Techniques most excited about learning in next year by different job titles",align="center") ,
+                         br(),
+                    
+                         #select job title
+                         box(
+                           
+                           selectInput("jobs3",label="Select Job title",
+                                       choices=jobs[,1]), 
+                           
+                           width=6
+                         ),
+                         
+                         #country select
+                         box(
+                           
+                           selectInput("industry4",label="Select Industry",
+                                       choices=TopIndustry[,1]), 
+                           
+                           width=6
+                         ),
+                         
+                         #box for plots
+                         box(
+                           
+                           highchartOutput("JobML"), 
                            width=12 
                          )
                   ) #end column
