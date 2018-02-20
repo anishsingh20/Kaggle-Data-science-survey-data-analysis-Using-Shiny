@@ -274,4 +274,22 @@ server<-function(input,output)
         hc_add_theme(hc_theme_ffx())
       
     })
+    
+    
+    #tab-6 work data
+    output$Datatype<-renderHighchart({
+      
+      datadf<-SurveyDf %>% select(EmployerIndustry,WorkDataTypeSelect,CurrentJobTitleSelect) %>% 
+        filter(EmployerIndustry==input$industry6,CurrentJobTitleSelect==input$job6) %>% 
+        group_by(WorkDataTypeSelect) %>% 
+        summarise(Count = n()) %>% 
+        arrange(desc(Count))
+      
+      hchart(datadf,hcaes(x=WorkDataTypeSelect,y=Count),type="column",name="Count") %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Bar plot of type of data used",align="center") %>%
+        hc_add_theme(hc_theme_ffx())
+      
+      
+    })
 }

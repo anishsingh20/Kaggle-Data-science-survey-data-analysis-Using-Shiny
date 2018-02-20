@@ -395,7 +395,35 @@ dashboardPage(
           #tab 6
           tabItem(
                   tabName ="tab6",
-                  h3("What is used at work?",align="center")
+                  h3("What type of data is used at work?",align="center"),
+                  fluidRow(
+                    
+                    column(12,
+                           
+                           box(
+                             selectInput("industry6",label="Select industry",
+                                         choices=TopIndustry[,1]) ,
+                             width=6
+                             
+                           ),#end box
+                           box(
+                             selectInput("job6",label="Select Job position",
+                                         choices=jobs[,1]) ,
+                             width=6
+                             
+                           ),
+                           
+                           #pie chart of skill importance
+                           box(
+                             
+                             highchartOutput("Datatype"), 
+                             width=12 
+                           )#end box
+                           
+                    )#end column
+                    
+                  )
+                  
                   
                   
           )
