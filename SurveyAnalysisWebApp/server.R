@@ -4,6 +4,7 @@ require(tidyr)
 require(shiny)
 require(shinydashboard)
 require(data.table)
+require(stringr)
 
 #reading the dataset
 SurveyDf<-fread("multipleChoiceResponses.csv") #for faster data reading
@@ -90,6 +91,55 @@ WorkTool[1:21,]<-NA
 WorkTool<-na.omit(WorkTool)
 
 
+
+
+#data frame for ML method which is often used at work
+
+WorkMethod<-SurveyDf %>% select(
+                              'WorkMethodsFrequencyA/B' ,
+                              WorkMethodsFrequencyAssociationRules ,
+                              WorkMethodsFrequencyBayesian ,
+                              WorkMethodsFrequencyCNNs ,
+                              WorkMethodsFrequencyCollaborativeFiltering ,
+                              'WorkMethodsFrequencyCross-Validation'  ,
+                              WorkMethodsFrequencyDataVisualization ,
+                              WorkMethodsFrequencyDecisionTrees ,
+                              WorkMethodsFrequencyEnsembleMethods,
+                              WorkMethodsFrequencyEvolutionaryApproaches ,
+                              WorkMethodsFrequencyGANs,
+                              WorkMethodsFrequencyGBM,
+                              WorkMethodsFrequencyHMMs,
+                              WorkMethodsFrequencyKNN,
+                              WorkMethodsFrequencyLiftAnalysis,
+                              WorkMethodsFrequencyLogisticRegression,
+                              WorkMethodsFrequencyMLN,
+                              WorkMethodsFrequencyNaiveBayes,
+                              WorkMethodsFrequencyNLP,
+                              WorkMethodsFrequencyNeuralNetworks,
+                              WorkMethodsFrequencyPCA,
+                              WorkMethodsFrequencyPrescriptiveModeling,
+                              WorkMethodsFrequencyRandomForests,
+                              WorkMethodsFrequencyRecommenderSystems,
+                              WorkMethodsFrequencyRNNs,
+                              WorkMethodsFrequencySegmentation,
+                              WorkMethodsFrequencySimulation,
+                              WorkMethodsFrequencySVMs,
+                              WorkMethodsFrequencyTextAnalysis,
+                              WorkMethodsFrequencyTimeSeriesAnalysis) %>% 
+
+  gather(key="WorkMethod",value="Used") 
+
+
+WorkMethod<-WorkMethod %>% group_by(WorkMethod,Used) %>% 
+  summarise(count=n()) %>%
+  arrange(desc(count))
+
+
+#removing NA values
+
+WorkMethod[1:30,]<-NA
+
+WorkMethod<-na.omit(WorkMethod)
 
 
 
@@ -361,15 +411,32 @@ server<-function(input,output)
     })
     
     
+    #pie chart for how often a tool is used at work
     output$WorkToolUsed<-renderHighchart({
       
       WorkToolOftendf<-WorkTool %>% filter(WorkTools %in% input$workTool)
       
-      colors<-c("red", "blue", "green")
+      colors<-c("#20C200", "#22BBE8", "#E83122","#C722E8")
       
       hchart(WorkToolOftendf,hcaes(x=Used,y=count),type="pie",name="Count",color=colors) %>% 
         hc_exporting(enabled = TRUE) %>%
-        hc_title(text="Pie Chart of how often a tool is used at work",align="center") %>%
+        hc_title(text="Pie Chart of how often a tool is used at work",align="center") %>% 
+        hc_add_theme(hc_theme_ffx())
+      
+      
+    })
+    
+    
+    #pie chart of how often an ML technique is used at work
+    output$WorkMethodUsed<-renderHighchart({
+      
+      WorkMethodOftendf<-WorkMethod %>% filter(WorkMethod %in% input$MLoften)
+      
+      colors<-c("#20C200", "#22BBE8", "#E83122","#C722E8")
+      
+      hchart(WorkMethodOftendf,hcaes(x=Used,y=count),type="pie",name="Count",color=colors) %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Pie Chart of how often a tool is used at work",align="center") %>% 
         hc_add_theme(hc_theme_ffx())
       
       

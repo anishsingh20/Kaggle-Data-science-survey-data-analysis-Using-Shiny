@@ -90,6 +90,57 @@ WorkTool<-na.omit(WorkTool)
 
 
 
+#data frame for ML method which is often used at work
+
+WorkMethod<-SurveyDf %>% select(
+  'WorkMethodsFrequencyA/B' ,
+  WorkMethodsFrequencyAssociationRules ,
+  WorkMethodsFrequencyBayesian ,
+  WorkMethodsFrequencyCNNs ,
+  WorkMethodsFrequencyCollaborativeFiltering ,
+  'WorkMethodsFrequencyCross-Validation'  ,
+  WorkMethodsFrequencyDataVisualization ,
+  WorkMethodsFrequencyDecisionTrees ,
+  WorkMethodsFrequencyEnsembleMethods,
+  WorkMethodsFrequencyEvolutionaryApproaches ,
+  WorkMethodsFrequencyGANs,
+  WorkMethodsFrequencyGBM,
+  WorkMethodsFrequencyHMMs,
+  WorkMethodsFrequencyKNN,
+  WorkMethodsFrequencyLiftAnalysis,
+  WorkMethodsFrequencyLogisticRegression,
+  WorkMethodsFrequencyMLN,
+  WorkMethodsFrequencyNaiveBayes,
+  WorkMethodsFrequencyNLP,
+  WorkMethodsFrequencyNeuralNetworks,
+  WorkMethodsFrequencyPCA,
+  WorkMethodsFrequencyPrescriptiveModeling,
+  WorkMethodsFrequencyRandomForests,
+  WorkMethodsFrequencyRecommenderSystems,
+  WorkMethodsFrequencyRNNs,
+  WorkMethodsFrequencySegmentation,
+  WorkMethodsFrequencySimulation,
+  WorkMethodsFrequencySVMs,
+  WorkMethodsFrequencyTextAnalysis,
+  WorkMethodsFrequencyTimeSeriesAnalysis) %>% 
+  
+  gather(key="WorkMethod",value="Used") 
+
+
+WorkMethod<-WorkMethod %>% group_by(WorkMethod,Used) %>% 
+  summarise(count=n()) %>%
+  arrange(desc(count))
+
+
+#removing NA values
+
+WorkMethod[1:30,]<-NA
+
+WorkMethod<-na.omit(WorkMethod)
+
+
+
+
 
 
 
@@ -508,6 +559,22 @@ dashboardPage(
                            box(
                              
                              highchartOutput("WorkToolUsed"), 
+                             width=12 
+                           ),#end box
+                           
+                           
+                           #work ML method frequency 
+                           box(
+                             selectInput("MLoften",label="Select Ml techniques often used at work?",
+                                         choices=unique(WorkMethod[,1])) ,
+                             width=12
+                             
+                           ),
+                           
+                           #pie chart of work tool 
+                           box(
+                             
+                             highchartOutput("WorkMethodUsed"), 
                              width=12 
                            )#end box
                            
