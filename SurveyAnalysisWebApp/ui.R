@@ -52,6 +52,49 @@ SkillImportance[1:10,]<-NA
 SkillImportance<-na.omit(SkillImportance)
 
 
+
+
+
+
+WorkTool<-SurveyDf %>% select(WorkToolsFrequencyAmazonML,WorkToolsFrequencyAWS,WorkToolsFrequencyAzure,
+                              WorkToolsFrequencyMicrosoftSQL,WorkToolsFrequencyOracle,
+                              WorkToolsFrequencyMicrosoftRServer,
+                              WorkToolsFrequencyExcel,WorkToolsFrequencyCloudera,WorkToolsFrequencySpark,
+                              WorkToolsFrequencyHadoop,WorkToolsFrequencyIBMCognos,WorkToolsFrequencyIBMWatson,
+                              WorkToolsFrequencyIBMSPSSStatistics,
+                              WorkToolsFrequencyTensorFlow,WorkToolsFrequencySQL, WorkToolsFrequencyR,WorkToolsFrequencyNoSQL,
+                              WorkToolsFrequencyPython,
+                              WorkToolsFrequencyTableau,
+                              WorkToolsFrequencySASEnterprise,WorkToolsFrequencySASEnterprise,
+                              WorkToolsFrequencyC
+                              
+) %>% 
+  
+  gather(key="WorkTools",value="Used")
+
+
+#grouping by WorkTool and How often it is used and calculating count of each and summarising data
+
+WorkTool<-WorkTool %>% group_by(WorkTools,Used) %>% 
+  summarise(count=n()) %>%
+  arrange(desc(count))
+
+
+#removing NA values
+
+WorkTool[1:21,]<-NA
+
+WorkTool<-na.omit(WorkTool)
+
+
+
+
+
+
+
+
+
+
 dashboardPage(
   skin="black",
     dashboardHeader(title="Kaggle Survey Data analysis") ,
@@ -456,7 +499,7 @@ dashboardPage(
                            #work tool frequency 
                            box(
                              selectInput("workTool",label="Select Tools used at work",
-                                         choices=jobs[,1]) ,
+                                         choices=unique(WorkTool[,1])) ,
                              width=12
                              
                            ),
