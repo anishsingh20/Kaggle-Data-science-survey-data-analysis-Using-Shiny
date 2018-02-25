@@ -446,5 +446,21 @@ server<-function(input,output)
     #what is the type of Data storage at work
     output$DataStorageWork<-renderHighchart({
       
+      DataStoragedf<-SurveyDf %>% select(EmployerIndustry,WorkDataStorage) %>% 
+        filter(EmployerIndustry==input$industry8) %>% 
+        group_by(WorkDataStorage) %>% 
+        summarise(Count = n()) %>%
+        mutate(Percentage = round((Count/sum(Count))*100,digits = 2)) %>% 
+        top_n(15) %>% 
+        arrange(desc(Percentage))
+      
+      DataStoragedf[1,]<-NA
+      
+      hchart(na.omit(DataStoragedf),hcaes(x=WorkDataStorage,y=Percentage),type="column",name="Percentage % ",color="#C70039") %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Bar plot what type of data storge is used at work",align="center") %>%
+        hc_add_theme(hc_theme_ffx())
+      
+      
     })
 }
