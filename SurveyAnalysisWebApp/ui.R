@@ -413,12 +413,53 @@ dashboardPage(
                              
                            ),
                            
-                           #pie chart of skill importance
+                           #pie chart of most used data at work
                            box(
                              
                              highchartOutput("Datatype"), 
                              width=12 
+                           ) ,#end box 
+                           
+                           #work data set size
+                           box(
+                             selectInput("industry7",label="Select industry",
+                                         choices=TopIndustry[,1]) ,
+                             width=6
+                             
+                           ),#end box
+                           box(
+                             selectInput("job7",label="Select Job position",
+                                         choices=jobs[,1]) ,
+                             width=6
+                             
+                           ),
+                          
+                           #chart of work dataset size
+                           box(
+                             
+                             highchartOutput("DatasetSize"), 
+                             width=12 
+                           ) ,#end box 
+                           
+                           
+                           
+                           
+                           
+                           #work tool frequency 
+                           box(
+                             selectInput("workTool",label="Select Tools used at work",
+                                         choices=jobs[,1]) ,
+                             width=12
+                             
+                           ),
+                           
+                           #pie chart of work tool 
+                           box(
+                             
+                             highchartOutput("WorkToolUsed"), 
+                             width=12 
                            )#end box
+                           
                            
                     )#end column
                     
