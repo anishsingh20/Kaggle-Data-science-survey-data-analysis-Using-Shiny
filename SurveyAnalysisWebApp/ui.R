@@ -419,6 +419,11 @@ dashboardPage(
                              highchartOutput("Datatype"), 
                              width=12 
                            ) ,#end box 
+                           br(),
+                           
+                           h3("What is the size of dataset used at work",align="center"),
+                           br(),
+                           
                            
                            #work data set size
                            box(
@@ -441,8 +446,11 @@ dashboardPage(
                              width=12 
                            ) ,#end box 
                            
+                           br(),
                            
+                           h3("What tool is used at work often",align="center"),
                            
+                           br(),
                            
                            
                            #work tool frequency 

@@ -299,4 +299,25 @@ server<-function(input,output)
       
       
     })
+    
+    #bar chart for size of data set used at work in different industries by different job positions
+    output$DatasetSize<-renderHighchart({
+      
+      datasizedf<-SurveyDf %>% select(EmployerIndustry,WorkDatasetSize,CurrentJobTitleSelect) %>% 
+        filter(EmployerIndustry==input$industry7,CurrentJobTitleSelect==input$job7) %>% 
+        group_by(WorkDatasetSize) %>% 
+        summarise(Count = n()) %>%
+        mutate(Percentage = round((Count/sum(Count))*100,digits = 2)) %>% 
+        arrange(desc(Percentage))
+      
+      hchart(datasizedf,hcaes(x=WorkDatasetSize,y=Percentage),type="column",name="Percentage % ",color="#3B22AE") %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Bar plot of size of dataset used",align="center") %>%
+        hc_add_theme(hc_theme_ffx())
+      
+      
+      
+      
+      
+    })
 }
