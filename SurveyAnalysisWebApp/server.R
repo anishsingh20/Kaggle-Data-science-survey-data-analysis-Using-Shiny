@@ -463,4 +463,28 @@ server<-function(input,output)
       
       
     })
+    
+    
+    #what is the job satisfaction of employees
+    output$JobSatisfaction<-renderHighchart({
+      
+      JobSatisfactiondf<-SurveyDf %>% select(CurrentJobTitleSelect,JobSatisfaction) %>% 
+        filter(CurrentJobTitleSelect==input$job8) %>% 
+        group_by(JobSatisfaction) %>% 
+        summarise(Count = n()) %>%
+        mutate(Percentage = round((Count/sum(Count))*100,digits = 2)) %>% 
+        #top_n(15) %>% 
+        arrange(desc(Percentage))
+      
+      JobSatisfactiondf[1,]<-NA
+      
+      hchart(na.omit(JobSatisfactiondf),hcaes(x=JobSatisfaction,y=Percentage),type="column",name="Percentage % ",color="#20CB42") %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Job Satisfaction of employees",align="center") %>%
+        hc_add_theme(hc_theme_ffx())
+      
+    })
+    
+    
+    
 }

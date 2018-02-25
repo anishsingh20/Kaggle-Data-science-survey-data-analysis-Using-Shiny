@@ -517,6 +517,27 @@ dashboardPage(
                            br(),
                            
                            
+                           
+                           h3("What is the Job satisfaction?",align="center"),
+                           
+                           #Type of data storage at work
+                           box(
+                             
+                             selectInput("job8",label="Select Job Title",
+                                         choices=jobs[,1]), 
+                             
+                             width=12
+                           ),
+                           box(
+                             
+                             highchartOutput("JobSatisfaction"), 
+                             width=12 
+                           ) ,
+                           
+                           br(),
+                           
+                           
+                           
                            h3("What is the type of Data storage at Work",align="center"),
                            
                            #Type of data storage at work
