@@ -562,6 +562,13 @@ dashboardPage(
                              width=12 
                            ),#end box
                            
+                           h4("So most of the times Python,SQL and R are used at work.",align="center"),
+                           
+                           br(),
+                           
+                           h3("What data sciece and ML method is most often used at work?",align="center"),
+                           
+                           br(),
                            
                            #work ML method frequency 
                            box(
@@ -576,8 +583,10 @@ dashboardPage(
                              
                              highchartOutput("WorkMethodUsed"), 
                              width=12 
-                           )#end box
+                           ),#end box
                            
+                           br(),
+                           h4("So most of the times Data visualization,logistic Regression and Cross-Validation are used at work.",align="center")
                            
                     )#end column
                     
