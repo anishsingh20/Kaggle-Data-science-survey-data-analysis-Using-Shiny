@@ -441,4 +441,10 @@ server<-function(input,output)
       
       
     })
+    
+    
+    #what is the type of Data storage at work
+    output$DataStorageWork<-renderHighchart({
+      
+    })
 }

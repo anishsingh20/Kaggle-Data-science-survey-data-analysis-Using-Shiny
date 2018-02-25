@@ -507,13 +507,33 @@ dashboardPage(
                              
                            ),
                            
-                           #pie chart of most used data at work
+                           
+                           #bar chart of most used data at work
                            box(
                              
                              highchartOutput("Datatype"), 
                              width=12 
                            ) ,#end box 
                            br(),
+                           
+                           
+                           h3("What is the type of Data storage at Work",align="center"),
+                           
+                           #Type of data storage at work
+                           box(
+                             
+                             selectInput("industry8",label="Select Industry",
+                                         choices=TopIndustry[,1]), 
+                             
+                             width=12
+                           ),
+                           box(
+                             
+                             highchartOutput("DataStorageWork"), 
+                             width=12 
+                           ) ,
+                           
+                           
                            
                            h3("What is the size of dataset used at work",align="center"),
                            br(),
