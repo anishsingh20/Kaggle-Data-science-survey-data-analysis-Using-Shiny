@@ -57,6 +57,36 @@ SkillImportance<-na.omit(SkillImportance)
 
 
 
+#data frame for tool which is often used at work
+
+WorkTool<-SurveyDf %>% select(WorkToolsFrequencyAmazonML,WorkToolsFrequencyAWS,WorkToolsFrequencyAzure,
+                              WorkToolsFrequencyMicrosoftSQL,WorkToolsFrequencyOracle,
+                              WorkToolsFrequencyMicrosoftRServer,
+                              WorkToolsFrequencyExcel,WorkToolsFrequencyCloudera,WorkToolsFrequencySpark,
+                              WorkToolsFrequencyHadoop,WorkToolsFrequencyIBMCognos,WorkToolsFrequencyIBMWatson,
+                              WorkToolsFrequencyIBMSPSSStatistics,
+                              WorkToolsFrequencyTensorFlow,WorkToolsFrequencySQL, WorkToolsFrequencyR,WorkToolsFrequencyNoSQL,
+                              WorkToolsFrequencyPython,
+                              WorkToolsFrequencyTableau,
+                              WorkToolsFrequencySASEnterprise,WorkToolsFrequencySASEnterprise,
+                              WorkToolsFrequencyC
+                              
+                        ) %>% 
+  
+                    gather(key="WorkTools",value="Used")
+
+
+#grouping by WorkTool and How often it is used and calculating count of each and summarising data
+
+WorkTool<-WorkTool %>% group_by(WorkTools,Used) %>% 
+  summarise(count=n()) %>%
+  arrange(desc(count))
+
+
+
+
+
+
 
 
 server<-function(input,output)
@@ -317,6 +347,21 @@ server<-function(input,output)
       
       
       
+      
+      
+    })
+    
+    
+    output$WorkToolUsed<-renderHighchart({
+      
+      WorkToolOftendf<-WorkTool %>% filter(Skill %in% input$skill)
+      
+      colors<-c("red", "blue", "green")
+      
+      hchart(skilldf,hcaes(x=importance,y=count),type="funnel",name="Count",color=colors) %>% 
+        hc_exporting(enabled = TRUE) %>%
+        hc_title(text="Funnel Chart of importance of skill",align="center") %>%
+        hc_add_theme(hc_theme_ffx())
       
       
     })
