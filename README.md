@@ -1,11 +1,12 @@
 # Analyzing-Kaggle-Survey-Data
+
 This is a data analytics project for analyzing,visualizing and mining the data collected by the Kaggle Data science survey conducted in 2017.
 
 After the exploratory data analysis and knowledge extraction next process will be the developement of a shiny dashboard to summarize and plot the key findings and the most important information inferred from the data science survey about the participants and the data science industry from the analysis.
 
 Link to the Web application-https://anishwalia20.shinyapps.io/KaggleSurveyDataAnalysisDashboard/
 
-Below are the links to the reports generated using Rmarkdown which consists various descriptive insights and analysis-
+Below are the links to the reports generated using Rmarkdown which consists various descriptive insights and analysis on different demographics from the survey.
 
 1).  Part-One-:http://rpubs.com/anish20/kaggleDataScienceSurvey2017
 
