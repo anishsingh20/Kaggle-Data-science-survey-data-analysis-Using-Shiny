@@ -4,7 +4,7 @@ This is a data analytics project for analyzing,visualizing and mining the data c
 
 After the exploratory data analysis and knowledge extraction next process will be the developement of a shiny dashboard to summarize and plot the key findings and the most important information inferred from the data science survey about the participants and the data science industry from the analysis.
 
-Link to the Web application-https://anishwalia20.shinyapps.io/KaggleSurveyDataAnalysisDashboard/
+Link to the Shiny Web application developed in R-https://anishwalia20.shinyapps.io/KaggleSurveyDataAnalysisDashboard/
 
 Below are the links to the reports generated using Rmarkdown which consists various descriptive insights and analysis on different demographics from the survey.
 
