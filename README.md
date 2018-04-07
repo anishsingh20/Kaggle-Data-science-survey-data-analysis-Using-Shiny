@@ -2,7 +2,7 @@
 
 This is a data analytics project for analyzing,visualizing and mining the data collected by the Kaggle Data science survey conducted in 2017.
 
-After the exploratory data analysis and knowledge extraction next process will be the developement of a shiny dashboard to summarize and plot the key findings and the most important information inferred from the data science survey about the participants and the data science industry from the analysis.
+After the exploratory data analysis and knowledge extraction I have developed a shiny dashboard to summarize and plot the key findings and the most important information inferred from the data science survey about the participants and the data science industry from the analysis.
 
 Link to the Shiny Web application developed in R-https://anishwalia20.shinyapps.io/KaggleSurveyDataAnalysisDashboard/
 
