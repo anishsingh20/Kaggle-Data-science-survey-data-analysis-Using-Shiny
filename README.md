@@ -1,4 +1,4 @@
-# Analyzing-Kaggle-Survey-Data
+# Analyzing-Kaggle-Survey-Data-Using-Shiny-and-ShinyDashboard
 
 This is a data analytics project for analyzing,visualizing and mining the data collected by the Kaggle Data science survey conducted in 2017.
 
