@@ -1,6 +1,6 @@
 # Analyzing-Kaggle-Survey-Data-Using-Shiny-and-ShinyDashboard
 
-This is a data analytics project for analyzing,visualizing and mining the data collected by the Kaggle Data science survey conducted in 2017.
+This is a data analytics project for analyzing and studying the data collected by the Kaggle Data science survey conducted in 2017 to understand and explore various trends in Data science industry and how interested people are in this buzz word. The data set has tonnes of information and lots of variables.
 
 After the exploratory data analysis and knowledge extraction I have developed a shiny dashboard to summarize and plot the key findings and the most important information inferred from the data science survey about the participants and the data science industry from the analysis.
 
