@@ -6,6 +6,8 @@ This is a data analytics project for analyzing and studying the data collected b
 
 The motivation behind this project was my own curiosity and my own interest to understand and study the trends in data science. It's just that I love exploring and communicating with data. This is my favorite and most important part of any data science project i.e to know your dataset well. 
 
+The dataset and the details about the survey on ML and Data science can be found here - https://www.kaggle.com/kaggle/kaggle-survey-2017
+
 ### Details
 
 After the exploratory data analysis and knowledge extraction I have developed a shiny dashboard to summarize and plot the key findings and the most important information inferred from the data science survey about the participants and the data science industry from the analysis.
