@@ -1,6 +1,6 @@
 # Analyzing-Kaggle-Survey-Data-Using-Shiny-and-ShinyDashboard
 
-### Aim and Motivation
+### Aim and Motivation of this Project
 
 This is a data analytics project for analyzing and studying the data collected by the Kaggle Data science survey conducted in 2017 to understand and explore various trends in Data science industry and how interested people are in this buzz word. The data set has tonnes of information and lots of variables.
 
